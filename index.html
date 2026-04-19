@@ -25,7 +25,7 @@
 html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px}
 
 /* ── LOGIN PAGE ── */
-.login-page{min-height:100vh;display:flex;background:var(--navy);position:relative;overflow:hidden}
+.login-page{position:fixed;inset:0;display:flex;background:var(--navy);overflow:hidden;z-index:100}
 .login-bg-decor{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .login-bg-circle1{position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(13,148,136,0.12);top:-180px;left:-160px}
 .login-bg-circle2{position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(37,99,235,0.08);bottom:-120px;right:-80px}
@@ -45,41 +45,43 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .login-feat-icon svg{width:16px;height:16px;color:var(--teal2);stroke:var(--teal2)}
 .login-feat-text{font-size:13px;color:rgba(255,255,255,0.6)}
 .login-feat-text strong{color:rgba(255,255,255,0.88);font-weight:500}
-.login-right{width:480px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px 48px;position:relative;z-index:1}
-.login-card{background:white;border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,0.25)}
-.login-card-header{margin-bottom:28px}
-.login-card-title{font-size:22px;font-weight:700;color:var(--text);font-family:'DM Serif Display',serif;margin-bottom:6px}
-.login-card-sub{font-size:13px;color:var(--text3)}
+.login-right{width:480px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:30px 44px;position:relative;z-index:1;overflow-y:auto;background:var(--navy)}
+.login-card{background:rgba(255,255,255,0.06);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.10);border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,0.40)}
+.login-card-title{font-size:22px;font-weight:700;color:white;font-family:'DM Serif Display',serif;margin-bottom:6px}
+.login-card-sub{font-size:13px;color:rgba(255,255,255,0.55)}
 .login-form-group{margin-bottom:18px}
-.login-form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;letter-spacing:.01em}
+.login-form-group{margin-bottom:16px}
+.login-form-group label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,0.75);margin-bottom:7px;letter-spacing:.01em}
 .login-input-wrap{position:relative}
-.login-input{width:100%;border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px 11px 42px;font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:var(--font);transition:all .18s}
-.login-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,0.10);background:white}
-.login-input.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,0.08)}
-.login-input-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+.login-input{width:100%;border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:11px 14px 11px 42px;font-size:14px;color:white;background:rgba(255,255,255,0.08);outline:none;font-family:var(--font);transition:all .18s}
+.login-input::placeholder{color:rgba(255,255,255,0.30)}
+.login-input:focus{border-color:var(--teal2);box-shadow:0 0 0 3px rgba(13,148,136,0.25);background:rgba(255,255,255,0.12)}
+.login-input.error{border-color:#FCA5A5;box-shadow:0 0 0 3px rgba(220,38,38,0.15)}
+.login-input-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.40);pointer-events:none}
 .login-input-icon svg{width:16px;height:16px}
-.login-pw-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);padding:2px;display:flex;border-radius:4px;transition:color .15s}
-.login-pw-toggle:hover{color:var(--text)}
+.login-pw-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.40);padding:2px;display:flex;border-radius:4px;transition:color .15s}
+.login-pw-toggle:hover{color:rgba(255,255,255,0.85)}
 .login-pw-toggle svg{width:16px;height:16px}
 .login-remember{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.login-remember label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);cursor:pointer}
-.login-remember input{accent-color:var(--teal);width:15px;height:15px}
-.login-forgot{font-size:12px;color:var(--teal);text-decoration:none;cursor:pointer;font-weight:500}
+.login-remember label{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.60);cursor:pointer}
+.login-remember input{accent-color:var(--teal2);width:15px;height:15px}
+.login-forgot{font-size:12px;color:var(--teal2);text-decoration:none;cursor:pointer;font-weight:500}
 .login-forgot:hover{text-decoration:underline}
 .login-btn{width:100%;padding:13px;background:var(--teal);border:none;border-radius:10px;color:white;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em}
-.login-btn:hover{background:var(--teal2);box-shadow:0 4px 16px rgba(13,148,136,0.35);transform:translateY(-1px)}
+.login-btn:hover{background:var(--teal2);box-shadow:0 4px 20px rgba(13,148,136,0.50);transform:translateY(-1px)}
 .login-btn:active{transform:translateY(0)}
 .login-btn svg{width:16px;height:16px}
-.login-error{background:#FEF2F2;border:1px solid rgba(220,38,38,0.25);border-radius:9px;padding:11px 14px;font-size:12.5px;color:#991B1B;display:flex;align-items:center;gap:8px;margin-bottom:18px;animation:shake .3s ease}
-.login-error svg{width:15px;height:15px;flex-shrink:0;color:#DC2626}
+.login-btn.autofill-btn{background:rgba(255,255,255,0.08);color:var(--teal2);border:1.5px solid rgba(13,148,136,0.35);box-shadow:none}
+.login-btn.autofill-btn:hover{background:rgba(13,148,136,0.15);box-shadow:none}
+.login-error{background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.35);border-radius:9px;padding:11px 14px;font-size:12.5px;color:#FCA5A5;display:flex;align-items:center;gap:8px;margin-bottom:18px;animation:shake .3s ease}
+.login-error svg{width:15px;height:15px;flex-shrink:0;color:#FCA5A5}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.login-divider{display:flex;align-items:center;gap:12px;margin:24px 0;color:var(--text3);font-size:12px}
-.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border)}
-.login-cred-hint{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-size:12px;color:var(--text3)}
-.login-cred-hint strong{color:var(--text2);font-weight:600}
+.login-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:rgba(255,255,255,0.22);font-size:12px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.10)}
+.login-cred-hint{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);border-radius:9px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,0.55)}
+.login-cred-hint strong{color:rgba(255,255,255,0.85);font-weight:600}
 .login-cred-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
-.login-footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--text3)}
-.login-footer strong{color:var(--text2)}
+.login-footer{margin-top:22px;text-align:center;font-size:11px;color:rgba(255,255,255,0.22)}
 #app{display:flex;min-height:100vh}
 
 /* SIDEBAR */
@@ -381,6 +383,35 @@ td.td-mono{font-family:var(--mono);font-size:12px}
 .pill-tab.active{background:var(--bg2);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 
 /* TOGGLES */
+/* ── IMPORT / EXPORT ── */
+.imp-exp-modal{background:var(--bg2);border-radius:14px;width:700px;max-width:97vw;max-height:94vh;overflow-y:auto;box-shadow:var(--shadow-md)}
+.imp-tab-row{display:flex;gap:0;border-bottom:1px solid var(--border);flex-shrink:0}
+.imp-tab{flex:1;padding:14px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font)}
+.imp-tab.active{color:var(--teal);border-bottom-color:var(--teal);background:rgba(13,148,136,.04)}
+.imp-tab:hover:not(.active){color:var(--text2);background:var(--bg3)}
+.imp-drop-zone{border:2px dashed var(--border2);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all .15s;background:var(--bg3);position:relative}
+.imp-drop-zone:hover,.imp-drop-zone.drag{border-color:var(--teal);background:rgba(13,148,136,.04)}
+.imp-drop-zone.has-file{border-color:var(--green);background:var(--green3);border-style:solid}
+.imp-drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.preview-table-wrap{overflow-x:auto;max-height:190px;border:1px solid var(--border);border-radius:8px}
+.preview-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.preview-table th{background:var(--bg3);padding:7px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;position:sticky;top:0;border-bottom:1px solid var(--border);white-space:nowrap}
+.preview-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text2);white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis}
+.preview-table tr:last-child td{border-bottom:none}
+.preview-table tr.err-row td{background:#FEF2F2;color:#991B1B}
+.import-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.imp-sum-box{background:var(--bg3);border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)}
+.imp-sum-num{font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1}
+.imp-sum-lbl{font-size:10px;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+.exp-format-card{border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;display:flex;align-items:flex-start;gap:12px}
+.exp-format-card:hover{border-color:var(--teal);background:rgba(13,148,136,.03)}
+.exp-format-card.selected{border-color:var(--teal);background:rgba(13,148,136,.06)}
+.exp-format-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.field-checkbox{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:6px;cursor:pointer;transition:background .12s;font-size:12px;color:var(--text2)}
+.field-checkbox:hover{background:rgba(13,148,136,.06)}
+.field-checkbox input{accent-color:var(--teal);width:14px;height:14px;cursor:pointer}
+.fields-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bg3);border-radius:8px;padding:8px}
+/* ── TOGGLES ── */
 .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
 .toggle-row:last-child{border-bottom:none}
 .toggle-info label{font-size:13px;font-weight:500;color:var(--text);display:block}
@@ -478,6 +509,15 @@ let S = {
   page:'dashboard',
   selectedAgr:null,      // for detail panel
   showUpload:false,
+  showImportExport:false,
+  impExpTab:'import',   // 'import' | 'export'
+  importFile:null,
+  importDrag:false,
+  importPreview:[],     // parsed rows
+  importErrors:[],
+  exportFormat:'csv',   // 'csv'|'excel'|'pdf'
+  exportFields:['id','title','type','dept','party','owner','reviewer','status','start','expiry','priority','tags','notes'],
+  exportFilter:'all',
   showEdit:false,
   showStatus:false,
   showReminder:false,
@@ -635,6 +675,8 @@ function renderTopbar(){
 
 const NOTIF_CONFIG = {
   slackWebhook: '', // paste your Slack incoming webhook URL here
+  defaultChannel: '#legal-ops',
+  criticalChannel: '#legal-urgent',
   emailTo: 'legal@company.com',
   emailCC: 'clo@company.com',
   enableSlack: true,
@@ -650,7 +692,9 @@ function wasSent(key){ return SENT_TODAY.has(key); }
 // ── Build a Slack block-kit message ──
 function buildSlackPayload(evt){
   const emoji = {critical:'🚨',warning:'⚠️',info:'ℹ️',expired:'🔴',pending:'🟡'}[evt.type]||'📋';
+  const channel = (evt.type==='critical'||evt.type==='expired') ? NOTIF_CONFIG.criticalChannel : NOTIF_CONFIG.defaultChannel;
   return {
+    channel: channel,
     text: `${emoji} *LexOps Alert* — ${evt.title}`,
     blocks:[
       {type:'header',text:{type:'plain_text',text:`${emoji} LexOps Legal Portal — ${evt.title}`,emoji:true}},
@@ -661,7 +705,7 @@ function buildSlackPayload(evt){
         {type:'mrkdwn',text:`*Priority:*\n${evt.priority||'—'}`},
       ]},
       {type:'section',text:{type:'mrkdwn',text:`*Details:* ${evt.message}`}},
-      {type:'context',elements:[{type:'mrkdwn',text:`📅 Checked: ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST  |  🏢 LexOps Legal Portal`}]},
+      {type:'context',elements:[{type:'mrkdwn',text:`📅 Checked: ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST  |  🏢 LexOps Legal Portal  |  📢 ${channel}`}]},
       {type:'actions',elements:[{type:'button',style:'danger',text:{type:'plain_text',text:'View Agreement'},url:'#',action_id:'view_agreement'}]},
     ]
   };
@@ -1321,7 +1365,11 @@ function agreementsInner(){
           ${types.map(t=>`<option value="${t}"${S.filterType===t?' selected':''}>${t}</option>`).join('')}
         </select>
         <button class="btn btn-sm" id="btn-clear-all">✕ Clear</button>
-        <button class="btn btn-primary btn-sm" id="btn-upload2">${IC.plus(13)} Upload</button>
+        <button class="btn btn-sm" id="btn-import-export" style="gap:5px">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><polyline points="8 7 12 3 16 7"/><line x1="12" y1="3" x2="12" y2="12"/></svg>
+          Import / Export
+        </button>
+        <button class="btn btn-primary btn-sm" id="btn-upload2">${IC.plus(13)} New</button>
       </div>
     </div>
     <div class="table-scroll"><table>
@@ -1348,6 +1396,217 @@ function agreementsInner(){
 /* ═══════════ AGREEMENTS PAGE ═══════════ */
 function agreements(){
   return`<div class="table-section" id="agr-table-wrap">${agreementsInner()}</div>`;
+}
+
+/* ═══════════ IMPORT / EXPORT MODAL ═══════════ */
+const EXPORT_FIELD_DEFS = [
+  {k:'id',l:'Agreement ID',group:'Core'},
+  {k:'title',l:'Title',group:'Core'},
+  {k:'type',l:'Type',group:'Core'},
+  {k:'dept',l:'Department',group:'Core'},
+  {k:'party',l:'Counterparty',group:'Core'},
+  {k:'owner',l:'Owner',group:'People'},
+  {k:'reviewer',l:'Legal Reviewer',group:'People'},
+  {k:'status',l:'Status',group:'Core'},
+  {k:'priority',l:'Priority',group:'Core'},
+  {k:'effective',l:'Effective Date',group:'Dates'},
+  {k:'signing',l:'Signing Date',group:'Dates'},
+  {k:'start',l:'Start Date',group:'Dates'},
+  {k:'expiry',l:'Expiry Date',group:'Dates'},
+  {k:'tags',l:'Tags',group:'Extra'},
+  {k:'notes',l:'Notes',group:'Extra'},
+  {k:'file',l:'File Name',group:'Extra'},
+];
+const CSV_IMPORT_TEMPLATE = 'title,type,dept,party,owner,reviewer,status,priority,start,expiry,tags,notes\n"Master Service Agreement – Example","MSA","Technology","Vendor Name Ltd","Priya Sharma","Rahul Mehta","Draft","High","2025-01-01","2026-01-01","IT,Vendor","Key SLA in Clause 7"';
+
+function renderImportExportModal(){
+  const t=S.impExpTab;
+  const allFields=EXPORT_FIELD_DEFS;
+  const groups=[...new Set(allFields.map(f=>f.group))];
+
+  // ── IMPORT TAB ──
+  const importTab=()=>{
+    const f=S.importFile;
+    const prev=S.importPreview;
+    const errs=S.importErrors;
+    const valid=prev.filter((_,i)=>!errs[i]);
+    const invalid=prev.filter((_,i)=>errs[i]);
+    return`
+    <div style="padding:20px 22px">
+      <div style="background:var(--blue3);border:1px solid rgba(37,99,235,.15);border-radius:9px;padding:12px 15px;font-size:12px;color:#1E40AF;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:16px;flex-shrink:0">📋</span>
+        <div>
+          <strong>CSV / Excel import</strong> — Upload a file or paste CSV data below. Download the template to see the required format.
+          <br>Required columns: <code style="background:rgba(37,99,235,.1);padding:1px 5px;border-radius:3px">title, type, dept, party, owner, status, priority, expiry</code>
+        </div>
+      </div>
+
+      <!-- Drop zone -->
+      <div class="imp-drop-zone${f?' has-file':''}${S.importDrag?' drag':''}" id="imp-drop-zone">
+        <input type="file" id="imp-file-input" accept=".csv,.xlsx,.xls,.tsv"/>
+        ${f?`
+          <div style="font-size:26px;margin-bottom:8px">📄</div>
+          <div style="font-size:13px;font-weight:600;color:var(--green)">${esc(f.name)}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:3px">${fmtSize(f.size)} · Click to change</div>
+        `:`
+          <div style="font-size:28px;margin-bottom:10px">⬆️</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text2)">Drop CSV or Excel file here</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">or click to browse · .csv .xlsx .xls · Max 10MB</div>
+        `}
+      </div>
+
+      <!-- OR paste CSV -->
+      <div style="display:flex;align-items:center;gap:10px;margin:14px 0">
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+        <span style="font-size:11px;color:var(--text3)">or paste CSV data</span>
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+      </div>
+      <textarea id="imp-paste-csv" rows="4" style="width:100%;border:1px solid var(--border2);border-radius:8px;padding:10px 12px;font-size:12px;font-family:var(--mono);color:var(--text);background:var(--bg);resize:vertical;outline:none" placeholder="${CSV_IMPORT_TEMPLATE}"></textarea>
+
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-sm" id="btn-imp-template" style="gap:5px">${IC.dl(12)} Download Template</button>
+        <button class="btn btn-primary btn-sm" id="btn-imp-parse" style="gap:5px">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Parse &amp; Preview
+        </button>
+        ${f||prev.length?`<button class="btn btn-sm" id="btn-imp-clear">✕ Clear</button>`:''}
+      </div>
+
+      ${prev.length?`
+      <!-- Preview + Summary -->
+      <div class="import-summary">
+        <div class="imp-sum-box"><div class="imp-sum-num" style="color:var(--text)">${prev.length}</div><div class="imp-sum-lbl">Total Rows</div></div>
+        <div class="imp-sum-box"><div class="imp-sum-num" style="color:var(--green)">${valid.length}</div><div class="imp-sum-lbl">Valid</div></div>
+        <div class="imp-sum-box"><div class="imp-sum-num" style="color:var(--red)">${invalid.length}</div><div class="imp-sum-lbl">Errors</div></div>
+        <div class="imp-sum-box"><div class="imp-sum-num" style="color:var(--amber)">${AGREEMENTS.filter(e=>prev.some(p=>p.title===e.title)).length}</div><div class="imp-sum-lbl">Duplicates</div></div>
+      </div>
+      ${invalid.length?`<div style="background:var(--red3);border:1px solid rgba(220,38,38,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#991B1B;margin-bottom:12px">
+        ⚠ ${invalid.length} row${invalid.length>1?'s have':' has'} errors: ${[...new Set(errs.filter(Boolean))].slice(0,3).join('; ')}
+      </div>`:''}
+      <div class="preview-table-wrap">
+        <table class="preview-table">
+          <thead><tr>
+            <th>#</th><th>Title</th><th>Type</th><th>Department</th><th>Counterparty</th><th>Status</th><th>Expiry</th><th>Priority</th><th>✓</th>
+          </tr></thead>
+          <tbody>${prev.map((r,i)=>`<tr class="${errs[i]?'err-row':''}">
+            <td style="color:var(--text3)">${i+1}</td>
+            <td style="font-weight:500;color:var(--text)">${esc((r.title||'').substring(0,30))}</td>
+            <td>${esc(r.type||'—')}</td>
+            <td>${esc(r.dept||'—')}</td>
+            <td>${esc((r.party||'—').substring(0,20))}</td>
+            <td>${r.status?statusBadge(r.status):'—'}</td>
+            <td>${esc(r.expiry||'—')}</td>
+            <td>${esc(r.priority||'—')}</td>
+            <td>${errs[i]?`<span style="color:var(--red)" title="${esc(errs[i]||'')}">✗</span>`:'<span style="color:var(--green)">✓</span>'}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button class="btn btn-primary" id="btn-imp-confirm" ${valid.length===0?'disabled style="opacity:.5;cursor:not-allowed"':''}>
+          ⬆ Import ${valid.length} Valid Row${valid.length!==1?'s':''}
+        </button>
+        ${invalid.length?`<button class="btn" id="btn-imp-errors">Download Error Report</button>`:''}
+      </div>
+      `:''}
+    </div>`;
+  };
+
+  // ── EXPORT TAB ──
+  const exportTab=()=>{
+    const fmt=S.exportFormat;
+    const selFields=S.exportFields;
+    const fmts=[
+      {id:'csv',icon:'📄',label:'CSV',sub:'Comma-separated, opens in Excel / Sheets',color:'#059669'},
+      {id:'excel',icon:'📊',label:'Excel (.xlsx)',sub:'Native Excel workbook with formatting',color:'#1D6F42'},
+      {id:'pdf',icon:'📑',label:'PDF Report',sub:'Printable report, opens print dialog',color:'#DC2626'},
+    ];
+    const filterData=getFilteredAgreements();
+    const allData=AGREEMENTS;
+    const expFilters=[
+      {id:'all',label:'All Agreements',count:allData.length},
+      {id:'current',label:'Current view / filter',count:filterData.length},
+      {id:'signed',label:'Signed & Active',count:allData.filter(a=>['Signed','Renewed'].includes(a.status)).length},
+      {id:'pending',label:'Pending Action',count:allData.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status)).length},
+      {id:'expired',label:'Expired',count:allData.filter(a=>a.status==='Expired').length},
+      {id:'exp30',label:'Expiring in 30 Days',count:allData.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;}).length},
+    ];
+    return`
+    <div style="padding:20px 22px">
+      <!-- Format selection -->
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:10px">1. Choose export format</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        ${fmts.map(f=>`
+        <div class="exp-format-card${fmt===f.id?' selected':''}" data-fmt="${f.id}">
+          <div class="exp-format-icon" style="background:${f.color}18;font-size:20px">${f.icon}</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text)">${f.label}</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px">${f.sub}</div>
+          </div>
+          <div style="margin-left:auto;flex-shrink:0">
+            <div style="width:18px;height:18px;border-radius:50%;border:2px solid ${fmt===f.id?'var(--teal)':'var(--border2)'};background:${fmt===f.id?'var(--teal)':'transparent'};display:flex;align-items:center;justify-content:center">
+              ${fmt===f.id?'<div style="width:7px;height:7px;border-radius:50%;background:white"></div>':''}
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>
+
+      <!-- Data filter -->
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:10px">2. Select data to export</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px">
+        ${expFilters.map(f=>`
+        <label style="display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid ${S.exportFilter===f.id?'var(--teal)':'var(--border)'};border-radius:8px;cursor:pointer;background:${S.exportFilter===f.id?'rgba(13,148,136,.05)':'var(--bg)'};transition:all .15s">
+          <input type="radio" name="exp-filter" value="${f.id}" ${S.exportFilter===f.id?'checked':''} style="accent-color:var(--teal)"/>
+          <div><div style="font-size:12px;font-weight:500;color:var(--text)">${f.label}</div><div style="font-size:10px;color:var(--text3)">${f.count} records</div></div>
+        </label>`).join('')}
+      </div>
+
+      <!-- Field selection -->
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">3. Choose fields to include</div>
+      <div style="display:flex;gap:6px;margin-bottom:8px">
+        <button class="btn btn-sm" id="btn-sel-all-fields" style="font-size:11px">Select All</button>
+        <button class="btn btn-sm" id="btn-sel-none-fields" style="font-size:11px">Deselect All</button>
+      </div>
+      <div class="fields-grid">
+        ${allFields.map(f=>`
+        <label class="field-checkbox">
+          <input type="checkbox" class="exp-field-cb" data-field="${f.k}" ${selFields.includes(f.k)?'checked':''}/>
+          ${f.l}
+        </label>`).join('')}
+      </div>
+
+      <!-- Export button -->
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:12px;color:var(--text3)">
+          Exporting <strong style="color:var(--text)">${selFields.length} fields</strong> as <strong style="color:var(--text)">${fmt.toUpperCase()}</strong>
+        </div>
+        <button class="btn btn-primary" id="btn-do-export" style="gap:6px">
+          ${IC.dl(14)} Export Now
+        </button>
+      </div>
+    </div>`;
+  };
+
+  return`
+  <div class="modal-overlay" id="imp-exp-overlay">
+    <div class="imp-exp-modal">
+      <div class="modal-header" style="border-bottom:none;padding-bottom:0">
+        <div>
+          <div style="font-size:15px;font-weight:600">Import &amp; Export</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px">Bulk upload agreements or export your portfolio data</div>
+        </div>
+        <button class="panel-close" id="btn-close-imp-exp">${IC.x(16)}</button>
+      </div>
+      <div class="imp-tab-row">
+        <button class="imp-tab${t==='import'?' active':''}" data-imp-tab="import">
+          ⬆ Bulk Import
+        </button>
+        <button class="imp-tab${t==='export'?' active':''}" data-imp-tab="export">
+          ⬇ Export Data
+        </button>
+      </div>
+      ${t==='import'?importTab():exportTab()}
+    </div>
+  </div>`;
 }
 
 /* ═══════════ DETAIL PANEL ═══════════ */
@@ -1642,35 +1901,62 @@ function notifEmail(){
   return`<div class="table-section"><div class="table-header"><div class="table-title">Email Settings</div></div><div style="padding:0 18px">${items.map(n=>`<div class="toggle-row"><div class="toggle-info"><label>${n.l}</label><p>${n.d}</p></div><label class="toggle"><input type="checkbox"${n.on?' checked':''}><span class="toggle-slider"></span></label></div>`).join('')}</div><div style="padding:18px;border-top:1px solid var(--border)"><div class="form-group"><label>Recipients</label><input type="text" value="legal@company.com, priya.sharma@company.com"/></div><div class="form-group"><label>CC on Critical Alerts</label><input type="text" value="clo@company.com"/></div><button class="btn btn-primary btn-sm">Save</button></div></div>`;
 }
 function notifSlack(){
+  // restore persisted config from sessionStorage
+  try{const saved=JSON.parse(sessionStorage.getItem('lexops_notif_config')||'{}');
+    if(saved.slackWebhook) NOTIF_CONFIG.slackWebhook=saved.slackWebhook;
+    if(saved.defaultChannel) NOTIF_CONFIG.defaultChannel=saved.defaultChannel;
+    if(saved.criticalChannel) NOTIF_CONFIG.criticalChannel=saved.criticalChannel;
+    if(saved.enableSlack!==undefined) NOTIF_CONFIG.enableSlack=saved.enableSlack;
+  }catch(e){}
+  const configured=!!NOTIF_CONFIG.slackWebhook;
   return`<div class="table-section">
     <div class="table-header"><div class="table-title">Slack Integration — Live Agent</div></div>
     <div style="padding:18px">
       <div style="background:var(--bg3);border-radius:9px;padding:14px;margin-bottom:18px;display:flex;align-items:center;gap:12px;border:1px solid var(--border)">
         <div style="width:40px;height:40px;background:#611f69;border-radius:9px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:16px">S</div>
         <div>
-          <div style="font-size:13px;font-weight:600">${NOTIF_CONFIG.slackWebhook?'Slack Webhook Configured ✓':'Slack Webhook Not Configured'}</div>
-          <div style="font-size:11px;color:${NOTIF_CONFIG.slackWebhook?'var(--green)':'var(--amber)'}">
-            ${NOTIF_CONFIG.slackWebhook?'● Connected — notifications will be sent to Slack':'○ Paste your Incoming Webhook URL below to enable'}
+          <div style="font-size:13px;font-weight:600">${configured?'Slack Webhook Configured ✓':'Slack Webhook Not Configured'}</div>
+          <div style="font-size:11px;color:${configured?'var(--green)':'var(--amber)'}">
+            ${configured?`● Active — sending to ${NOTIF_CONFIG.defaultChannel} / ${NOTIF_CONFIG.criticalChannel}`:'○ Paste your Incoming Webhook URL below to enable'}
           </div>
         </div>
-        <div style="margin-left:auto;font-size:11px;color:var(--text3)">
-          <label class="toggle" style="margin-left:8px"><input type="checkbox" id="slack-toggle" ${NOTIF_CONFIG.enableSlack?'checked':''}><span class="toggle-slider"></span></label>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3)">
+          Enable
+          <label class="toggle"><input type="checkbox" id="slack-toggle" ${NOTIF_CONFIG.enableSlack?'checked':''}><span class="toggle-slider"></span></label>
         </div>
       </div>
+
       <div class="form-group">
-        <label>Incoming Webhook URL <span style="color:var(--text3);font-weight:400">(from Slack App settings)</span></label>
-        <input id="slack-webhook-url" type="text" value="${NOTIF_CONFIG.slackWebhook}" placeholder="https://hooks.slack.com/services/T.../B.../..." style="font-family:var(--mono);font-size:12px"/>
+        <label>Incoming Webhook URL <span style="color:var(--text3);font-weight:400">(from Slack App → Incoming Webhooks)</span></label>
+        <input id="slack-webhook-url" type="text" value="${esc(NOTIF_CONFIG.slackWebhook)}"
+          placeholder="https://hooks.slack.com/services/T.../B.../..."
+          style="font-family:var(--mono);font-size:12px"/>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Default Channel</label><input type="text" value="#legal-ops" placeholder="#legal-ops"/></div>
-        <div class="form-group"><label>Critical Alerts Channel</label><input type="text" value="#legal-urgent" placeholder="#legal-urgent"/></div>
+        <div class="form-group">
+          <label>Default Channel <span style="color:var(--text3);font-weight:400">(standard alerts)</span></label>
+          <input id="slack-default-channel" type="text" value="${esc(NOTIF_CONFIG.defaultChannel)}" placeholder="#legal-ops"/>
+        </div>
+        <div class="form-group">
+          <label>Critical Alerts Channel <span style="color:var(--text3);font-weight:400">(expired / ≤2d)</span></label>
+          <input id="slack-critical-channel" type="text" value="${esc(NOTIF_CONFIG.criticalChannel)}" placeholder="#legal-urgent"/>
+        </div>
       </div>
-      <div style="background:var(--blue3);border-radius:8px;padding:12px 14px;font-size:12px;color:#1E40AF;margin-bottom:14px;border:1px solid rgba(37,99,235,0.15)">
-        <strong>How to set up:</strong> Go to <em>api.slack.com/apps</em> → Create App → Incoming Webhooks → Activate → Add to Workspace → Copy URL above.
+
+      <div style="background:var(--blue3);border-radius:8px;padding:12px 14px;font-size:12px;color:#1E40AF;margin-bottom:16px;border:1px solid rgba(37,99,235,0.15)">
+        <strong>How to get your webhook URL:</strong><br>
+        1. Go to <em>api.slack.com/apps</em> → Create App → <em>Incoming Webhooks</em> → Activate<br>
+        2. Click <em>Add New Webhook to Workspace</em> → Pick your channel → Copy URL<br>
+        3. Paste above and click <strong>Save Slack Settings</strong>
       </div>
+
+      <div style="background:var(--amber3);border:1px solid rgba(217,119,6,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#92400E;margin-bottom:16px">
+        ⚠️ <strong>CORS Note:</strong> Browsers block direct Slack API calls. For production, use a backend proxy endpoint that forwards to the Slack webhook. The <em>Send Test Message</em> button will log the payload to the browser console if blocked.
+      </div>
+
       <div style="display:flex;gap:8px">
-        <button class="btn btn-primary btn-sm" id="btn-save-slack">Save Slack Settings</button>
-        <button class="btn btn-sm" id="btn-test-slack">Send Test Message</button>
+        <button class="btn btn-primary btn-sm" id="btn-save-slack">💾 Save Slack Settings</button>
+        <button class="btn btn-sm" id="btn-test-slack">📨 Send Test Message</button>
       </div>
     </div>
   </div>`;
@@ -1846,6 +2132,176 @@ function users(){
     </div>`;
 }
 
+/* ═══════════ IMPORT / EXPORT LOGIC ═══════════ */
+
+// ── Parse CSV string into array of row objects ──
+function parseCSV(text){
+  const lines=text.trim().split(/\r?\n/);
+  if(lines.length<2) return{rows:[],errors:['File must have a header row and at least one data row']};
+  const headers=lines[0].split(',').map(h=>h.replace(/^"|"$/g,'').trim().toLowerCase());
+  const rows=[];const errors=[];
+  for(let i=1;i<lines.length;i++){
+    const raw=lines[i];if(!raw.trim())continue;
+    // handle quoted fields
+    const vals=[];let cur='',inQ=false;
+    for(let c=0;c<raw.length;c++){
+      if(raw[c]==='"'&&!inQ){inQ=true;}
+      else if(raw[c]==='"'&&inQ&&raw[c+1]==='"'){cur+='"';c++;}
+      else if(raw[c]==='"'&&inQ){inQ=false;}
+      else if(raw[c]===','&&!inQ){vals.push(cur.trim());cur='';}
+      else{cur+=raw[c];}
+    }
+    vals.push(cur.trim());
+    const row={};
+    headers.forEach((h,idx)=>{row[h]=vals[idx]||'';});
+    // Map common header aliases
+    const mapped={
+      id:row.id||row['agreement id']||row['agr id']||'',
+      title:row.title||row['agreement title']||row['name']||'',
+      type:row.type||row['agreement type']||'',
+      dept:row.dept||row['department']||row['business unit']||'',
+      party:row.party||row['counterparty']||row['counterparty name']||row['vendor']||'',
+      owner:row.owner||row['owner']||row['requestor']||'',
+      reviewer:row.reviewer||row['legal reviewer']||row['reviewer']||'',
+      status:row.status||'Draft',
+      priority:row.priority||'Medium',
+      effective:row.effective||row['effective date']||'',
+      signing:row.signing||row['signing date']||'',
+      start:row.start||row['start date']||'',
+      expiry:row.expiry||row['expiry date']||row['expiration date']||'',
+      tags:(row.tags||'').split(/[;,]/).map(t=>t.trim()).filter(Boolean),
+      notes:row.notes||row['remarks']||row['comments']||'',
+      file:row.file||row['document']||row['filename']||'',
+    };
+    // Validate
+    let err='';
+    if(!mapped.title) err='Title is required';
+    else if(!mapped.type||!TYPES.includes(mapped.type)) err=`Invalid type "${mapped.type}" — use: ${TYPES.slice(0,4).join(', ')}…`;
+    else if(!mapped.dept) err='Department is required';
+    else if(!mapped.party) err='Counterparty is required';
+    else if(mapped.expiry&&isNaN(new Date(mapped.expiry).getTime())) err=`Invalid expiry date "${mapped.expiry}"`;
+    rows.push(mapped);
+    errors.push(err);
+  }
+  return{rows,errors};
+}
+
+// ── Parse Excel using SheetJS if available, else treat as CSV ──
+async function parseFileToCSV(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    const isExcel=file.name.match(/\.xlsx?$/i);
+    reader.onload=e=>{
+      try{
+        if(isExcel&&typeof XLSX!=='undefined'){
+          const wb=XLSX.read(e.target.result,{type:'array'});
+          const ws=wb.Sheets[wb.SheetNames[0]];
+          const csv=XLSX.utils.sheet_to_csv(ws);
+          resolve(csv);
+        } else {
+          resolve(e.target.result);
+        }
+      }catch(err){reject(err);}
+    };
+    reader.onerror=()=>reject(new Error('File read error'));
+    if(isExcel&&typeof XLSX!=='undefined') reader.readAsArrayBuffer(file);
+    else reader.readAsText(file);
+  });
+}
+
+// ── Confirm and apply imported rows to AGREEMENTS ──
+function applyImport(){
+  const rows=S.importPreview;
+  const errors=S.importErrors;
+  const valid=rows.filter((_,i)=>!errors[i]);
+  if(!valid.length){showToast('❌ No valid rows to import','error');return;}
+  let added=0,skipped=0;
+  valid.forEach(r=>{
+    const dup=AGREEMENTS.find(a=>a.title.toLowerCase()===r.title.toLowerCase()&&a.party.toLowerCase()===r.party.toLowerCase());
+    if(dup){skipped++;return;}
+    AGREEMENTS.unshift({
+      id:r.id||nextId(),
+      title:r.title,type:r.type,dept:r.dept,party:r.party,
+      owner:r.owner||S.currentUser.name,
+      reviewer:r.reviewer||USERS.find(u=>u.role==='Legal Team')?.name||'',
+      status:STATUSES.includes(r.status)?r.status:'Draft',
+      priority:['High','Medium','Low'].includes(r.priority)?r.priority:'Medium',
+      effective:r.effective||'',signing:r.signing||'',start:r.start||'',expiry:r.expiry||'',
+      tags:Array.isArray(r.tags)?r.tags:[],notes:r.notes||'',file:r.file||'',
+    });
+    added++;
+  });
+  S.showImportExport=false;S.importFile=null;S.importPreview=[];S.importErrors=[];S.page='agreements';S.agrPage=1;
+  render();bindTableEvents();
+  showToast(`✅ Imported ${added} agreement${added!==1?'s':''}${skipped?' · '+skipped+' duplicate'+(skipped>1?'s':'')+' skipped':''}`, 'success');
+}
+
+// ── Export selected fields to CSV ──
+function doExportCSV(data,fields){
+  const headers=fields.map(k=>EXPORT_FIELD_DEFS.find(f=>f.k===k)?.l||k);
+  const rows=data.map(a=>fields.map(k=>{
+    const v=a[k];
+    const str=Array.isArray(v)?v.join('; '):(v||'');
+    return`"${str.replace(/"/g,'""')}"`;
+  }).join(','));
+  const csv=[headers.join(','),...rows].join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});// BOM for Excel UTF-8
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`lexops-agreements-${new Date().toISOString().split('T')[0]}.csv`;a.click();
+  URL.revokeObjectURL(url);
+  showToast(`✅ Exported ${data.length} records as CSV`,'success');
+}
+
+// ── Export to Excel using SheetJS ──
+function doExportExcel(data,fields){
+  if(typeof XLSX==='undefined'){showToast('⏳ Loading Excel library…','info');setTimeout(()=>doExportExcel(data,fields),1500);return;}
+  const headers=fields.map(k=>EXPORT_FIELD_DEFS.find(f=>f.k===k)?.l||k);
+  const rows=data.map(a=>fields.map(k=>{const v=a[k];return Array.isArray(v)?v.join('; '):(v||'');}));
+  const ws=XLSX.utils.aoa_to_sheet([headers,...rows]);
+  // Style header row
+  const range=XLSX.utils.decode_range(ws['!ref']);
+  for(let c=range.s.c;c<=range.e.c;c++){
+    const addr=XLSX.utils.encode_cell({r:0,c});
+    if(!ws[addr])continue;
+    ws[addr].s={font:{bold:true},fill:{fgColor:{rgb:'0D9488'}},alignment:{horizontal:'center'}};
+  }
+  // Auto column widths
+  ws['!cols']=fields.map((k,i)=>({wch:Math.max(headers[i].length+2, ...data.map(a=>{const v=a[k];const s=Array.isArray(v)?v.join('; '):(v||'');return s.length+2;}).slice(0,20))}));
+  const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Agreements');
+  XLSX.writeFile(wb,`lexops-agreements-${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast(`✅ Exported ${data.length} records as Excel`,'success');
+}
+
+// ── Get export dataset based on current filter selection ──
+function getExportData(){
+  const f=S.exportFilter;
+  if(f==='current') return getFilteredAgreements();
+  if(f==='signed') return AGREEMENTS.filter(a=>['Signed','Renewed'].includes(a.status));
+  if(f==='pending') return AGREEMENTS.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status));
+  if(f==='expired') return AGREEMENTS.filter(a=>a.status==='Expired');
+  if(f==='exp30') return AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;});
+  return AGREEMENTS;
+}
+
+// ── Download import error report ──
+function downloadErrorReport(){
+  const lines=['Row,Title,Error'];
+  S.importPreview.forEach((r,i)=>{if(S.importErrors[i])lines.push(`${i+1},"${(r.title||'').replace(/"/g,'""')}","${S.importErrors[i].replace(/"/g,'""')}"`)});
+  const blob=new Blob([lines.join('\n')],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='lexops-import-errors.csv';a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Template CSV download ──
+function downloadTemplate(){
+  const blob=new Blob(['\uFEFF'+CSV_IMPORT_TEMPLATE],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='lexops-import-template.csv';a.click();
+  URL.revokeObjectURL(url);
+  showToast('📄 Template downloaded — fill it in and re-upload','info');
+}
+
 /* ═══════════ CSV / PDF DOWNLOAD ═══════════ */
 function downloadCSV(filter){
   let data=AGREEMENTS;
@@ -1953,7 +2409,92 @@ function bindAll(){
   // Logout
   const lo=document.getElementById('btn-logout');
   if(lo) lo.addEventListener('click',doLogout);
-  // Notification agent manual trigger (history tab)
+  // Import/Export modal open
+  const bie=document.getElementById('btn-import-export');
+  if(bie) bie.addEventListener('click',()=>{S.showImportExport=true;S.impExpTab='import';render();});
+
+  // Close import/export modal
+  const cie=document.getElementById('btn-close-imp-exp');
+  if(cie) cie.addEventListener('click',()=>{S.showImportExport=false;render();});
+  const ieo=document.getElementById('imp-exp-overlay');
+  if(ieo) ieo.addEventListener('click',e=>{if(e.target===ieo){S.showImportExport=false;render();}});
+
+  // Import/Export tab switch
+  document.querySelectorAll('[data-imp-tab]').forEach(el=>el.addEventListener('click',()=>{S.impExpTab=el.dataset.impTab;render();}));
+
+  // File drop zone
+  const idz=document.getElementById('imp-drop-zone');
+  const ifi=document.getElementById('imp-file-input');
+  if(idz){
+    idz.addEventListener('dragover',e=>{e.preventDefault();if(!S.importDrag){S.importDrag=true;render();}});
+    idz.addEventListener('dragleave',e=>{if(!idz.contains(e.relatedTarget)){S.importDrag=false;render();}});
+    idz.addEventListener('drop',e=>{e.preventDefault();S.importDrag=false;const f=e.dataTransfer.files[0];if(f){S.importFile=f;S.importPreview=[];S.importErrors=[];render();}});
+  }
+  if(ifi) ifi.addEventListener('change',e=>{const f=e.target.files[0];if(f){S.importFile=f;S.importPreview=[];S.importErrors=[];render();}});
+
+  // Parse button
+  const bip=document.getElementById('btn-imp-parse');
+  if(bip) bip.addEventListener('click',async()=>{
+    let csvText='';
+    const paste=(document.getElementById('imp-paste-csv')?.value||'').trim();
+    if(S.importFile){
+      try{csvText=await parseFileToCSV(S.importFile);}catch(e){showToast('❌ Could not read file: '+e.message,'error');return;}
+    } else if(paste){
+      csvText=paste;
+    } else {
+      showToast('❌ Please upload a file or paste CSV data','error');return;
+    }
+    const{rows,errors}=parseCSV(csvText);
+    if(!rows.length){showToast('❌ No valid rows found. Check your file format.','error');return;}
+    S.importPreview=rows;S.importErrors=errors;render();
+    showToast(`📋 Parsed ${rows.length} row${rows.length!==1?'s':''} — ${errors.filter(Boolean).length} error${errors.filter(Boolean).length!==1?'s':''}`,errors.filter(Boolean).length?'error':'success');
+  });
+
+  // Clear import
+  const bic=document.getElementById('btn-imp-clear');
+  if(bic) bic.addEventListener('click',()=>{S.importFile=null;S.importPreview=[];S.importErrors=[];render();});
+
+  // Template download
+  const bit=document.getElementById('btn-imp-template');
+  if(bit) bit.addEventListener('click',downloadTemplate);
+
+  // Confirm import
+  const bconf=document.getElementById('btn-imp-confirm');
+  if(bconf) bconf.addEventListener('click',applyImport);
+
+  // Error report download
+  const berr=document.getElementById('btn-imp-errors');
+  if(berr) berr.addEventListener('click',downloadErrorReport);
+
+  // Export format selection
+  document.querySelectorAll('[data-fmt]').forEach(el=>el.addEventListener('click',()=>{S.exportFormat=el.dataset.fmt;render();}));
+
+  // Export filter selection
+  document.querySelectorAll('input[name=exp-filter]').forEach(el=>el.addEventListener('change',()=>{S.exportFilter=el.value;render();}));
+
+  // Export field checkboxes
+  document.querySelectorAll('.exp-field-cb').forEach(el=>el.addEventListener('change',()=>{
+    const f=el.dataset.field;
+    if(el.checked){if(!S.exportFields.includes(f))S.exportFields.push(f);}
+    else{S.exportFields=S.exportFields.filter(x=>x!==f);}
+  }));
+
+  // Select/Deselect all fields
+  const bsaf=document.getElementById('btn-sel-all-fields');
+  if(bsaf) bsaf.addEventListener('click',()=>{S.exportFields=EXPORT_FIELD_DEFS.map(f=>f.k);render();});
+  const bsnf=document.getElementById('btn-sel-none-fields');
+  if(bsnf) bsnf.addEventListener('click',()=>{S.exportFields=[];render();});
+
+  // Do export
+  const bde=document.getElementById('btn-do-export');
+  if(bde) bde.addEventListener('click',()=>{
+    const data=getExportData();
+    const fields=S.exportFields.length?S.exportFields:['id','title','type','status','expiry'];
+    if(!data.length){showToast('❌ No data to export with current filter','error');return;}
+    if(S.exportFormat==='csv') doExportCSV(data,fields);
+    else if(S.exportFormat==='excel') doExportExcel(data,fields);
+    else downloadPDF(S.exportFilter==='current'?null:S.exportFilter);
+  });
   const ra=document.getElementById('btn-run-agent');
   if(ra) ra.addEventListener('click',()=>{
     const events=runNotificationAgent();
@@ -1972,21 +2513,53 @@ function bindAll(){
   if(bss) bss.addEventListener('click',()=>{
     const url=(document.getElementById('slack-webhook-url')?.value||'').trim();
     const tog=document.getElementById('slack-toggle');
+    const defCh=(document.getElementById('slack-default-channel')?.value||'').trim()||'#legal-ops';
+    const critCh=(document.getElementById('slack-critical-channel')?.value||'').trim()||'#legal-urgent';
     NOTIF_CONFIG.slackWebhook=url;
     NOTIF_CONFIG.enableSlack=tog?tog.checked:true;
-    showToast('✅ Slack settings saved'+(url?'. Webhook configured.':'. Simulation mode (no webhook URL).'),'success');
+    NOTIF_CONFIG.defaultChannel=defCh;
+    NOTIF_CONFIG.criticalChannel=critCh;
+    // persist to sessionStorage so settings survive re-renders
+    sessionStorage.setItem('lexops_notif_config',JSON.stringify({
+      slackWebhook:url, defaultChannel:defCh, criticalChannel:critCh,
+      enableSlack:NOTIF_CONFIG.enableSlack
+    }));
+    showToast(url
+      ? `✅ Slack configured — webhook set, channels: ${defCh} / ${critCh}`
+      : '✅ Slack settings saved (simulation mode — no webhook URL)',
+    'success');
     render();
   });
-  // Test Slack
+  // Test Slack — bypasses dedup so you can test multiple times
   const bts=document.getElementById('btn-test-slack');
-  if(bts) bts.addEventListener('click',()=>{
-    dispatchNotification({
-      agreementId:'TEST',type:'info',title:'Test Notification from LexOps',
+  if(bts) bts.addEventListener('click',async()=>{
+    if(!NOTIF_CONFIG.slackWebhook){
+      showToast('⚠ No webhook URL set. Paste your Incoming Webhook URL and Save first, then test.','error');
+      return;
+    }
+    const payload=buildSlackPayload({
+      agreementId:'TEST_'+Date.now(), // unique key bypasses dedup
+      type:'info',title:'✅ Test Notification from LexOps',
       agreement:'Test Agreement',agreementType:'Test',owner:S.currentUser.name,
       priority:'Medium',expiry:'—',
-      message:'This is a test notification sent from LexOps. If you see this in Slack, the webhook is configured correctly.',
+      message:'This is a test message from LexOps. Your Slack integration is working correctly! 🎉',
     });
-    showToast('📨 Test notification dispatched — check console & Slack','info');
+    try{
+      const res=await fetch(NOTIF_CONFIG.slackWebhook,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload),
+      });
+      if(res.ok||res.status===200){
+        showToast(`✅ Test message sent to Slack channel ${NOTIF_CONFIG.defaultChannel}`,'success');
+      } else {
+        showToast(`❌ Slack returned ${res.status}. Check your webhook URL.`,'error');
+      }
+    }catch(e){
+      // CORS will block direct fetch in browser — log payload for manual testing
+      console.log('%c[LexOps Slack Test Payload]','color:#4A154B;font-weight:bold',payload);
+      showToast('⚠ CORS blocked direct send — payload logged to console. Use a backend proxy for production.','info');
+    }
   });
   // Save scheduler config
   const bsc=document.getElementById('btn-save-sched');
@@ -2237,7 +2810,15 @@ function doLogin(){
   const pw=(document.getElementById('login-pw')?.value||'').trim();
   if(!user||!pw){S.loginError='Please enter both username and password.';render();return;}
   if(user==='Admin'&&pw==='Admin@123'){
-    S.isLoggedIn=true;S.loginError='';render();
+    S.isLoggedIn=true;S.loginError='';
+    // Restore saved notification config
+    try{const saved=JSON.parse(sessionStorage.getItem('lexops_notif_config')||'{}');
+      if(saved.slackWebhook) NOTIF_CONFIG.slackWebhook=saved.slackWebhook;
+      if(saved.defaultChannel) NOTIF_CONFIG.defaultChannel=saved.defaultChannel;
+      if(saved.criticalChannel) NOTIF_CONFIG.criticalChannel=saved.criticalChannel;
+      if(saved.enableSlack!==undefined) NOTIF_CONFIG.enableSlack=saved.enableSlack;
+    }catch(e){}
+    render();
     startNotificationScheduler();
     setTimeout(()=>showToast('✅ Welcome back, '+S.currentUser.name+'!','success'),100);
   } else {
@@ -2266,6 +2847,7 @@ function render(){
         ${{dashboard,agreements,notifications,reports,users}[S.page]?.()??''}
       </div>
     </div>
+    ${S.showImportExport?renderImportExportModal():''}
     ${S.selectedAgr?renderDetailPanel():''}
     ${S.showUpload?renderUploadModal():''}
     ${S.showEdit?renderEditModal():''}
@@ -2378,6 +2960,7 @@ function saveEdit(){
 render();
 if(S.page==='agreements') bindTableEvents();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" onload="if(typeof S!=='undefined'&&S.page==='dashboard')initCharts()"></script>
 </body>
 </html>
