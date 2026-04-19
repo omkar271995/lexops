@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LexOps – Legal Agreement Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1829;--navy2:#122038;--slate2:#3D5A80;
+  --teal:#0D9488;--teal2:#14B8A6;--teal3:#CCFBF1;
+  --amber:#D97706;--amber3:#FEF3C7;
+  --red:#DC2626;--red3:#FEF2F2;
+  --green:#059669;--green3:#D1FAE5;
+  --blue:#2563EB;--blue3:#EFF6FF;
+  --purple:#7C3AED;--purple3:#EDE9FE;
+  --text:#0B1829;--text2:#374151;--text3:#6B7280;
+  --border:#E5E7EB;--border2:#D1D5DB;
+  --bg:#F8FAFC;--bg2:#FFFFFF;--bg3:#F1F5F9;
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --shadow:0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.1);
+}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px}
+
+/* ── LOGIN PAGE ── */
+.login-page{min-height:100vh;display:flex;background:var(--navy);position:relative;overflow:hidden}
+.login-bg-decor{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.login-bg-circle1{position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(13,148,136,0.12);top:-180px;left:-160px}
+.login-bg-circle2{position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(37,99,235,0.08);bottom:-120px;right:-80px}
+.login-bg-circle3{position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(13,148,136,0.06);bottom:80px;left:200px}
+.login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 64px;position:relative;z-index:1}
+.login-left-logo{display:flex;align-items:center;gap:14px;margin-bottom:52px}
+.login-logo-icon{width:44px;height:44px;background:var(--teal);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(13,148,136,0.4)}
+.login-logo-icon svg{width:24px;height:24px;fill:white}
+.login-logo-name{color:white;font-size:22px;font-weight:700;font-family:'DM Serif Display',serif}
+.login-logo-sub{color:rgba(255,255,255,0.38);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.login-headline{font-size:36px;font-weight:700;color:white;font-family:'DM Serif Display',serif;line-height:1.2;margin-bottom:16px;max-width:420px}
+.login-headline span{color:var(--teal2)}
+.login-tagline{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:380px;margin-bottom:48px}
+.login-features{display:flex;flex-direction:column;gap:14px}
+.login-feature{display:flex;align-items:center;gap:12px}
+.login-feat-icon{width:34px;height:34px;border-radius:8px;background:rgba(13,148,136,0.18);border:1px solid rgba(13,148,136,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.login-feat-icon svg{width:16px;height:16px;color:var(--teal2);stroke:var(--teal2)}
+.login-feat-text{font-size:13px;color:rgba(255,255,255,0.6)}
+.login-feat-text strong{color:rgba(255,255,255,0.88);font-weight:500}
+.login-right{width:480px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px 48px;position:relative;z-index:1}
+.login-card{background:white;border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,0.25)}
+.login-card-header{margin-bottom:28px}
+.login-card-title{font-size:22px;font-weight:700;color:var(--text);font-family:'DM Serif Display',serif;margin-bottom:6px}
+.login-card-sub{font-size:13px;color:var(--text3)}
+.login-form-group{margin-bottom:18px}
+.login-form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;letter-spacing:.01em}
+.login-input-wrap{position:relative}
+.login-input{width:100%;border:1.5px solid var(--border2);border-radius:10px;padding:11px 14px 11px 42px;font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:var(--font);transition:all .18s}
+.login-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,0.10);background:white}
+.login-input.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,0.08)}
+.login-input-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+.login-input-icon svg{width:16px;height:16px}
+.login-pw-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);padding:2px;display:flex;border-radius:4px;transition:color .15s}
+.login-pw-toggle:hover{color:var(--text)}
+.login-pw-toggle svg{width:16px;height:16px}
+.login-remember{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.login-remember label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);cursor:pointer}
+.login-remember input{accent-color:var(--teal);width:15px;height:15px}
+.login-forgot{font-size:12px;color:var(--teal);text-decoration:none;cursor:pointer;font-weight:500}
+.login-forgot:hover{text-decoration:underline}
+.login-btn{width:100%;padding:13px;background:var(--teal);border:none;border-radius:10px;color:white;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em}
+.login-btn:hover{background:var(--teal2);box-shadow:0 4px 16px rgba(13,148,136,0.35);transform:translateY(-1px)}
+.login-btn:active{transform:translateY(0)}
+.login-btn svg{width:16px;height:16px}
+.login-error{background:#FEF2F2;border:1px solid rgba(220,38,38,0.25);border-radius:9px;padding:11px 14px;font-size:12.5px;color:#991B1B;display:flex;align-items:center;gap:8px;margin-bottom:18px;animation:shake .3s ease}
+.login-error svg{width:15px;height:15px;flex-shrink:0;color:#DC2626}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.login-divider{display:flex;align-items:center;gap:12px;margin:24px 0;color:var(--text3);font-size:12px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.login-cred-hint{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-size:12px;color:var(--text3)}
+.login-cred-hint strong{color:var(--text2);font-weight:600}
+.login-cred-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.login-footer{margin-top:28px;text-align:center;font-size:11.5px;color:var(--text3)}
+.login-footer strong{color:var(--text2)}
+#app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:224px;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:20}
+.sidebar-logo{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.logo-mark{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:20px;height:20px;fill:white}
+.logo-text{color:white;font-size:17px;font-weight:600;font-family:'DM Serif Display',serif}
+.logo-sub{color:rgba(255,255,255,0.38);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.sidebar-nav{padding:10px 0;flex:1}
+.nav-section{padding:8px 16px 2px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;color:rgba(255,255,255,.58);font-size:13px;transition:all .15s;border-left:2px solid transparent;margin:1px 0;user-select:none}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9)}
+.nav-item.active{background:rgba(13,148,136,.18);color:var(--teal2);border-left-color:var(--teal2);font-weight:500}
+.nav-item svg{width:16px;height:16px;flex-shrink:0}
+.nav-badge{margin-left:auto;background:var(--red);color:white;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
+.sidebar-user{padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
+.user-avatar{width:32px;height:32px;background:var(--slate2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;flex-shrink:0}
+.user-name{color:rgba(255,255,255,.9);font-size:12px;font-weight:500}
+.user-role{color:rgba(255,255,255,.38);font-size:10px;margin-top:1px}
+
+/* MAIN */
+.main{flex:1;margin-left:224px;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;height:57px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:var(--shadow)}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.page-title{font-size:15px;font-weight:600;color:var(--text)}
+.page-breadcrumb{font-size:12px;color:var(--text3)}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.notif-btn{position:relative;width:34px;height:34px;border:1px solid var(--border);border-radius:7px;background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text3)}
+.notif-btn:hover{background:var(--bg3)}
+.notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:5px;right:5px;border:1.5px solid white}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);transition:all .15s;font-family:var(--font);line-height:1}
+.btn:hover{background:var(--bg3)}
+.btn-primary{background:var(--teal);border-color:var(--teal);color:white}
+.btn-primary:hover{background:var(--teal2);border-color:var(--teal2)}
+.btn-danger{background:var(--red);border-color:var(--red);color:white}
+.btn-danger:hover{background:#B91C1C}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-icon{width:30px;height:30px;padding:0;justify-content:center;border-radius:6px}
+.btn svg{width:14px;height:14px;flex-shrink:0}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 12px;min-width:260px}
+.search-box svg{width:14px;height:14px;color:var(--text3);flex-shrink:0}
+.search-box input{border:none;background:transparent;font-size:13px;color:var(--text);outline:none;width:100%;font-family:var(--font)}
+
+/* CONTENT */
+.content{padding:26px 28px;flex:1}
+.page-wrap{animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* STAT CARDS - clickable */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:all .15s}
+.stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);border-color:var(--teal)}
+.stat-card:hover .stat-action{opacity:1}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat-card.c-teal::before{background:var(--teal)}
+.stat-card.c-amber::before{background:var(--amber)}
+.stat-card.c-red::before{background:var(--red)}
+.stat-card.c-green::before{background:var(--green)}
+.stat-card.c-blue::before{background:var(--blue)}
+.stat-card.c-purple::before{background:var(--purple)}
+.stat-label{font-size:10.5px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.stat-value{font-size:30px;font-weight:600;color:var(--text);font-family:'DM Serif Display',serif;line-height:1}
+.stat-sub{font-size:11px;color:var(--text3);margin-top:5px}
+.stat-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:2px 7px;border-radius:20px;margin-top:7px;font-weight:500}
+.trend-up{background:var(--green3);color:var(--green)}
+.trend-warn{background:var(--amber3);color:var(--amber)}
+.trend-crit{background:var(--red3);color:var(--red)}
+.stat-action{font-size:11px;color:var(--teal);margin-top:6px;opacity:0;transition:opacity .15s;display:flex;align-items:center;gap:3px}
+
+/* ALERTS */
+.alerts-section{margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+.alert-item{display:flex;align-items:flex-start;gap:12px;padding:11px 15px;border-radius:9px;border:1px solid}
+.alert-item.a-crit{background:var(--red3);border-color:rgba(220,38,38,.22)}
+.alert-item.a-warn{background:var(--amber3);border-color:rgba(217,119,6,.22)}
+.alert-item.a-info{background:var(--blue3);border-color:rgba(37,99,235,.18)}
+.alert-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px}
+.alert-text{font-size:12.5px;color:var(--text2);flex:1}
+.alert-text strong{color:var(--text)}
+.alert-time{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* ── DASHBOARD REDESIGN ── */
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi-card{border-radius:14px;padding:18px 20px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;border:1px solid transparent}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.10)}
+.kpi-card .kpi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.kpi-card .kpi-icon svg{width:20px;height:20px}
+.kpi-card .kpi-val{font-size:32px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1;letter-spacing:-0.02em}
+.kpi-card .kpi-label{font-size:12px;font-weight:500;margin-top:4px}
+.kpi-card .kpi-sub{font-size:11px;margin-top:6px;opacity:.75}
+.kpi-card .kpi-pill{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:20px;margin-top:8px}
+/* card colour schemes */
+.kpi-teal{background:linear-gradient(135deg,#0D9488,#0F766E);color:white;border-color:#0F766E}
+.kpi-teal .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-teal .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-green{background:linear-gradient(135deg,#059669,#047857);color:white;border-color:#047857}
+.kpi-green .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-green .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-amber{background:linear-gradient(135deg,#D97706,#B45309);color:white;border-color:#B45309}
+.kpi-amber .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-amber .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-red{background:linear-gradient(135deg,#DC2626,#B91C1C);color:white;border-color:#B91C1C}
+.kpi-red .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-red .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-blue{background:linear-gradient(135deg,#2563EB,#1D4ED8);color:white;border-color:#1D4ED8}
+.kpi-blue .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-blue .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-purple{background:linear-gradient(135deg,#7C3AED,#6D28D9);color:white;border-color:#6D28D9}
+.kpi-purple .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-purple .kpi-pill{background:rgba(255,255,255,.2);color:white}
+.kpi-slate{background:linear-gradient(135deg,#3D5A80,#2D4263);color:white;border-color:#2D4263}
+.kpi-slate .kpi-icon{background:rgba(255,255,255,.18)}
+.kpi-slate .kpi-pill{background:rgba(255,255,255,.2);color:white}
+/* keep old stat card for non-dashboard */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:all .15s}
+.stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px);border-color:var(--teal)}
+.stat-card:hover .stat-action{opacity:1}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat-card.c-teal::before{background:var(--teal)}.stat-card.c-amber::before{background:var(--amber)}.stat-card.c-red::before{background:var(--red)}.stat-card.c-green::before{background:var(--green)}.stat-card.c-blue::before{background:var(--blue)}.stat-card.c-purple::before{background:var(--purple)}.stat-card.c-slate::before{background:var(--slate2)}
+.stat-label{font-size:10.5px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.stat-value{font-size:30px;font-weight:600;color:var(--text);font-family:'DM Serif Display',serif;line-height:1}
+.stat-sub{font-size:11px;color:var(--text3);margin-top:5px}
+.stat-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:2px 7px;border-radius:20px;margin-top:7px;font-weight:500}
+.trend-up{background:var(--green3);color:var(--green)}.trend-warn{background:var(--amber3);color:var(--amber)}.trend-crit{background:var(--red3);color:var(--red)}
+.stat-action{font-size:11px;color:var(--teal);margin-top:6px;opacity:0;transition:opacity .15s;display:flex;align-items:center;gap:3px}
+/* ALERTS */
+.alerts-section{margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+.alert-item{display:flex;align-items:flex-start;gap:12px;padding:11px 15px;border-radius:9px;border:1px solid}
+.alert-item.a-crit{background:var(--red3);border-color:rgba(220,38,38,.22)}.alert-item.a-warn{background:var(--amber3);border-color:rgba(217,119,6,.22)}.alert-item.a-info{background:var(--blue3);border-color:rgba(37,99,235,.18)}
+.alert-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px}
+.alert-text{font-size:12.5px;color:var(--text2);flex:1}.alert-text strong{color:var(--text)}
+.alert-time{font-size:11px;color:var(--text3);margin-top:2px}
+/* CHART CARDS */
+.chart-grid-top{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;align-items:start}
+.chart-grid-bottom{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.ccard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+.ccard-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.ccard-title{font-size:13px;font-weight:600;color:var(--text)}
+.ccard-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.ccard-badge{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;background:var(--bg3);color:var(--text3);white-space:nowrap;flex-shrink:0}
+.ccard-divider{height:1px;background:var(--border);margin:14px 0}
+/* donut legend 2-col */
+.donut-legend{display:grid;grid-template-columns:1fr 1fr;gap:3px 8px}
+.dl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);padding:2px 0}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dl-val{margin-left:auto;font-weight:600;font-size:11px;font-family:var(--mono);color:var(--text)}
+/* mini stats footer */
+.mini-stats{display:flex;gap:0}
+.mini-stat{flex:1;text-align:center;border-right:1px solid var(--border);padding:0 4px}
+.mini-stat:last-child{border-right:none}
+.mini-stat-num{font-size:20px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1}
+.mini-stat-lbl{font-size:9.5px;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+/* TYPE CARDS - like expiry calendar */
+.type-cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.type-card{border-radius:10px;padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
+.type-card:hover{transform:scale(1.04);box-shadow:0 4px 14px rgba(0,0,0,0.09)}
+.type-card-name{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.type-card-num{font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1}
+.type-card-lbl{font-size:8.5px;margin-top:3px;opacity:.75}
+/* priority legend row */
+.pri-legend{display:flex;gap:16px;justify-content:center;margin-top:10px}
+.pri-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.pri-leg-dot{width:9px;height:9px;border-radius:50%}
+/* heat calendar */
+.heat-months{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px}
+.heat-month{border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
+.heat-month:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.heat-month-name{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.heat-month-num{font-size:20px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1}
+.heat-month-lbl{font-size:8.5px;margin-top:2px;opacity:.75}
+/* department mini bar */
+.dept-bars{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.dept-bar-row{display:flex;align-items:center;gap:10px}
+.dept-bar-label{font-size:11.5px;color:var(--text2);width:90px;flex-shrink:0;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dept-bar-track{flex:1;height:10px;background:var(--bg3);border-radius:5px;overflow:hidden}
+.dept-bar-fill{height:100%;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.dept-bar-count{font-size:11px;font-family:var(--mono);color:var(--text3);width:20px;text-align:right}
+/* chart rows compat */
+.charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.charts-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow)}
+.chart-card-wide{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow)}
+.chart-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px}
+.chart-sub{font-size:11px;color:var(--text3);margin-bottom:14px}
+.chart-canvas-wrap{position:relative}
+.chart-legend{display:flex;flex-direction:column;gap:5px;margin-top:14px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text2);cursor:pointer;padding:2px 0;transition:opacity .15s}
+.legend-item:hover{opacity:.75}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.legend-val{margin-left:auto;font-weight:600;font-family:var(--mono);font-size:11px;color:var(--text)}
+.legend-pct{font-size:10px;color:var(--text3);margin-left:4px}
+.chart-center-stat{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.chart-center-num{font-size:26px;font-weight:700;font-family:'DM Serif Display',serif;color:var(--text);line-height:1}
+.chart-center-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+.chart-stat-row{display:flex;gap:0;border-top:1px solid var(--border);margin-top:14px;padding-top:14px}
+.chart-stat{flex:1;text-align:center;border-right:1px solid var(--border)}
+.chart-stat:last-child{border-right:none}
+.chart-stat-num{font-size:18px;font-weight:700;font-family:'DM Serif Display',serif}
+.chart-stat-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+.bar-chart{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-label{font-size:11.5px;color:var(--text3);width:80px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.bar-val{font-size:11px;font-family:var(--mono);color:var(--text2);width:24px;text-align:right}
+
+/* TABLES */
+.table-section{background:var(--bg2);border:1px solid var(--border);border-radius:11px;margin-bottom:20px;box-shadow:var(--shadow);overflow:hidden}
+.table-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.table-title{font-size:13px;font-weight:600;color:var(--text)}
+.table-subtitle{font-size:11px;color:var(--text3);margin-top:2px}
+.table-filters{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.filter-select{border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text2);background:var(--bg);outline:none;cursor:pointer;font-family:var(--font);height:30px}
+.filter-select:focus{border-color:var(--teal)}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#F8FFFE}
+tbody tr.clickable{cursor:pointer}
+td{padding:11px 14px;font-size:13px;color:var(--text2);white-space:nowrap}
+td.td-bold{font-weight:500;color:var(--text)}
+td.td-mono{font-family:var(--mono);font-size:12px}
+.pagination{display:flex;align-items:center;gap:4px;justify-content:flex-end;padding:11px 16px;border-top:1px solid var(--border)}
+.pg-btn{width:29px;height:29px;border:1px solid var(--border);border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--text2)}
+.pg-btn.pg-active{background:var(--teal);border-color:var(--teal);color:white}
+.pg-btn:hover:not(.pg-active){background:var(--bg3)}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.b-signed{background:var(--green3);color:#065F46}.b-signed::before{background:var(--green)}
+.b-pending{background:var(--amber3);color:#92400E}.b-pending::before{background:var(--amber)}
+.b-review{background:var(--blue3);color:#1E40AF}.b-review::before{background:var(--blue)}
+.b-expired{background:var(--red3);color:#991B1B}.b-expired::before{background:var(--red)}
+.b-draft{background:var(--bg3);color:var(--text3);border:1px solid var(--border)}.b-draft::before{background:var(--text3)}
+.b-terminated{background:var(--purple3);color:#5B21B6}.b-terminated::before{background:var(--purple)}
+.b-renewed{background:#E0F2FE;color:#075985}.b-renewed::before{background:#0369A1}
+.b-warn{background:var(--amber3);color:#92400E;border:1px solid rgba(217,119,6,.2)}
+.b-crit{background:var(--red3);color:#991B1B;border:1px solid rgba(220,38,38,.2)}
+.tag{display:inline-flex;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--text3);margin:2px}
+.priority{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:500}
+.p-high{color:var(--red)}.p-medium{color:var(--amber)}.p-low{color:var(--green)}
+
+/* DETAIL PANEL */
+.detail-overlay{position:fixed;inset:0;background:rgba(11,24,41,.45);z-index:50;display:flex;justify-content:flex-end;backdrop-filter:blur(2px)}
+.detail-panel{width:520px;background:var(--bg2);height:100%;overflow-y:auto;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12)}
+.panel-header{padding:20px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1}
+.panel-close{background:none;border:none;cursor:pointer;color:var(--text3);padding:5px;border-radius:5px;display:flex;align-items:center}
+.panel-close:hover{color:var(--text);background:var(--bg3)}
+.panel-body{padding:22px;flex:1}
+.panel-actions{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:0;background:var(--bg2)}
+.d-section{margin-bottom:22px}
+.d-section-title{font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.detail-field label{font-size:10.5px;color:var(--text3);display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.detail-field p{font-size:13px;color:var(--text);font-weight:500}
+.tl-item{display:flex;gap:11px;margin-bottom:13px}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:4px}
+.tl-text{font-size:12px;color:var(--text2)}.tl-time{font-size:11px;color:var(--text3);margin-top:2px}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(11,24,41,.5);z-index:60;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.modal{background:var(--bg2);border-radius:13px;width:600px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-md)}
+.modal-sm{width:440px}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1}
+.modal-body{padding:22px 24px}
+.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:var(--bg2)}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;border:1px solid var(--border2);border-radius:7px;padding:8px 11px;font-size:13px;color:var(--text);background:var(--bg);outline:none;font-family:var(--font);transition:border-color .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.08)}
+.form-group input[readonly]{background:var(--bg3);color:var(--text3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-error{font-size:11px;color:var(--red);margin-top:4px;display:none}
+.form-group.has-error input,.form-group.has-error select{border-color:var(--red)}
+.form-group.has-error .form-error{display:block}
+
+/* UPLOAD */
+.upload-area{border:1.5px dashed var(--border2);border-radius:9px;padding:26px;text-align:center;cursor:pointer;transition:all .15s;background:var(--bg3);position:relative}
+.upload-area:hover,.upload-area.drag-over{border-color:var(--teal);background:rgba(13,148,136,.04)}
+.upload-area.file-selected{border-color:var(--green);background:var(--green3);border-style:solid}
+.upload-area input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.file-preview{display:flex;align-items:center;gap:12px;padding:10px 13px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-top:10px}
+.file-preview-icon{width:36px;height:36px;background:var(--red3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.file-preview-name{font-size:13px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-preview-size{font-size:11px;color:var(--text3)}
+.file-preview-rm{background:none;border:none;cursor:pointer;color:var(--text3);padding:4px;border-radius:4px;display:flex}
+.file-preview-rm:hover{color:var(--red);background:var(--red3)}
+
+/* PILL TABS */
+.pill-tabs{display:flex;gap:3px;background:var(--bg3);border-radius:8px;padding:3px;margin-bottom:18px;width:fit-content}
+.pill-tab{padding:6px 14px;border-radius:6px;font-size:12.5px;font-weight:500;cursor:pointer;color:var(--text3);transition:all .15s;border:none;background:none;font-family:var(--font)}
+.pill-tab.active{background:var(--bg2);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+/* TOGGLES */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info label{font-size:13px;font-weight:500;color:var(--text);display:block}
+.toggle-info p{font-size:11.5px;color:var(--text3);margin-top:2px}
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:var(--border2);border-radius:20px;cursor:pointer;transition:.2s}
+.toggle input:checked~.toggle-slider{background:var(--teal)}
+.toggle-slider::before{content:'';position:absolute;width:14px;height:14px;background:white;border-radius:50%;left:3px;top:3px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle input:checked~.toggle-slider::before{transform:translateX(16px)}
+
+/* REPORTS */
+.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.report-card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:16px;box-shadow:var(--shadow);transition:all .15s;cursor:default}
+.report-card:hover{box-shadow:var(--shadow-md)}
+
+/* STATUS SELECT in edit modal */
+.status-select-wrap{position:relative}
+.status-badge-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:var(--font)}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);padding:11px 22px;border-radius:9px;font-size:13px;font-weight:500;z-index:999;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease}
+.toast-success{background:#065F46;color:white}
+.toast-error{background:var(--red);color:white}
+.toast-info{background:var(--navy);color:white}
+
+/* CONFIRM DIALOG */
+.confirm-box{background:var(--bg2);border-radius:12px;width:380px;max-width:95vw;padding:24px;box-shadow:var(--shadow-md)}
+.confirm-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.confirm-icon.danger{background:var(--red3)}
+.confirm-icon.warn{background:var(--amber3)}
+
+/* REMINDER MODAL */
+.reminder-option{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.reminder-option:hover,.reminder-option.selected{border-color:var(--teal);background:rgba(13,148,136,.04)}
+.reminder-option input[type=checkbox]{accent-color:var(--teal);width:15px;height:15px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ═══════════ DATA ═══════════ */
+let AGREEMENTS = [
+  {id:'AGR-2024-001',title:'Master Service Agreement – Accenture',type:'MSA',dept:'Technology',party:'Accenture India Pvt Ltd',owner:'Priya Sharma',reviewer:'Rahul Mehta',status:'Signed',effective:'2024-01-15',signing:'2024-01-14',start:'2024-01-15',expiry:'2025-01-14',priority:'High',tags:['IT','Vendor'],notes:'Annual renewal required. Key SLA terms in Clause 7.',file:'MSA_Accenture_v2.pdf'},
+  {id:'AGR-2024-002',title:'Non-Disclosure Agreement – Infosys',type:'NDA',dept:'Product',party:'Infosys Ltd',owner:'Anil Kumar',reviewer:'Deepa Nair',status:'Pending Signature',effective:'',signing:'',start:'2024-03-01',expiry:'2025-03-01',priority:'Medium',tags:['Confidentiality'],notes:'Awaiting counter-signature from Infosys legal team.',file:'NDA_Infosys_draft.pdf'},
+  {id:'AGR-2024-003',title:'Software License – SAP S/4HANA',type:'License',dept:'Finance',party:'SAP India Ltd',owner:'Sunita Reddy',reviewer:'Rahul Mehta',status:'Signed',effective:'2024-02-01',signing:'2024-01-28',start:'2024-02-01',expiry:'2024-07-10',priority:'High',tags:['Software','License'],notes:'Includes 500 user licenses. Review usage before expiry.',file:'License_SAP_v1.pdf'},
+  {id:'AGR-2024-004',title:'Employment Contract – Batch Hire Q1',type:'Employment',dept:'HR',party:'Internal',owner:'Meera Iyer',reviewer:'Deepa Nair',status:'Signed',effective:'2024-01-02',signing:'2024-01-02',start:'2024-01-02',expiry:'2026-12-31',priority:'Low',tags:['HR','Employment'],notes:'Covers 48 new joiners from Q1 2024.',file:'Employment_Q1.pdf'},
+  {id:'AGR-2024-005',title:'Office Space Lease – BKC Mumbai',type:'Lease',dept:'Facilities',party:'Naman Midtown Pvt Ltd',owner:'Rajesh Patel',reviewer:'Rahul Mehta',status:'Under Review',effective:'',signing:'',start:'2024-04-01',expiry:'2027-03-31',priority:'High',tags:['Real Estate','Lease'],notes:'3-year lock-in. Discuss TI allowance with landlord.',file:'Lease_BKC_draft.pdf'},
+  {id:'AGR-2024-006',title:'Vendor Agreement – Sodexo Cafeteria',type:'Vendor',dept:'Admin',party:'Sodexo India Food Solutions',owner:'Meera Iyer',reviewer:'Deepa Nair',status:'Expired',effective:'2023-01-01',signing:'2022-12-28',start:'2023-01-01',expiry:'2024-01-10',priority:'Medium',tags:['Vendor','Admin'],notes:'Contract lapsed. Renewal in progress.',file:'Vendor_Sodexo_v1.pdf'},
+  {id:'AGR-2024-007',title:'Partnership Agreement – TCS Digital',type:'Partnership',dept:'Business Dev',party:'Tata Consultancy Services',owner:'Anil Kumar',reviewer:'Rahul Mehta',status:'Draft',effective:'',signing:'',start:'2024-04-15',expiry:'2026-04-14',priority:'High',tags:['Partnership','Revenue'],notes:'Go-to-market partnership. Board approval pending.',file:''},
+  {id:'AGR-2024-008',title:'Insurance Policy – D&O Cover',type:'Insurance',dept:'Risk',party:'HDFC ERGO General Insurance',owner:'Sunita Reddy',reviewer:'Deepa Nair',status:'Signed',effective:'2024-01-01',signing:'2023-12-20',start:'2024-01-01',expiry:'2024-07-18',priority:'Medium',tags:['Insurance','Risk'],notes:'Director & Officer liability cover. Renew before expiry.',file:'Insurance_DO_v3.pdf'},
+  {id:'AGR-2024-009',title:'Data Processing Agreement – AWS',type:'DPA',dept:'Technology',party:'Amazon Web Services India',owner:'Priya Sharma',reviewer:'Rahul Mehta',status:'Signed',effective:'2024-03-01',signing:'2024-02-25',start:'2024-03-01',expiry:'2025-03-01',priority:'High',tags:['Cloud','Data','GDPR'],notes:'GDPR-aligned DPA. Includes SCCs for cross-border transfers.',file:'DPA_AWS_v2.pdf'},
+  {id:'AGR-2024-010',title:'Consulting Agreement – EY Advisory',type:'Consulting',dept:'Strategy',party:'Ernst & Young LLP',owner:'Rajesh Patel',reviewer:'Deepa Nair',status:'Pending Signature',effective:'',signing:'',start:'2024-04-01',expiry:'2024-09-30',priority:'Medium',tags:['Consulting','Advisory'],notes:'6-month strategy engagement. SOW attached.',file:'Consulting_EY_draft.pdf'},
+  {id:'AGR-2024-011',title:'SaaS Agreement – Salesforce CRM',type:'SaaS',dept:'Sales',party:'Salesforce.com India Pvt Ltd',owner:'Anil Kumar',reviewer:'Rahul Mehta',status:'Renewed',effective:'2024-01-01',signing:'2023-12-15',start:'2024-01-01',expiry:'2025-01-01',priority:'High',tags:['SaaS','CRM'],notes:'300 Sales Cloud licenses. Includes sandbox and CPQ.',file:'SaaS_Salesforce_v4.pdf'},
+  {id:'AGR-2024-012',title:'Termination Agreement – Legacy Vendor',type:'Termination',dept:'Procurement',party:'Wipro BPO Services',owner:'Meera Iyer',reviewer:'Deepa Nair',status:'Terminated',effective:'2024-02-15',signing:'2024-02-10',start:'2024-02-15',expiry:'2024-02-15',priority:'Low',tags:['Termination'],notes:'Clean termination. All deliverables received.',file:'Termination_Wipro.pdf'},
+];
+
+let USERS = [
+  {id:'U1',name:'Priya Sharma',role:'Legal Team',dept:'Legal',email:'priya.sharma@company.com',initials:'PS'},
+  {id:'U2',name:'Rahul Mehta',role:'Admin',dept:'Legal',email:'rahul.mehta@company.com',initials:'RM'},
+  {id:'U3',name:'Deepa Nair',role:'Legal Team',dept:'Legal',email:'deepa.nair@company.com',initials:'DN'},
+  {id:'U4',name:'Anil Kumar',role:'Business User',dept:'Technology',email:'anil.kumar@company.com',initials:'AK'},
+  {id:'U5',name:'Sunita Reddy',role:'Business User',dept:'Finance',email:'sunita.reddy@company.com',initials:'SR'},
+  {id:'U6',name:'Meera Iyer',role:'Business User',dept:'HR',email:'meera.iyer@company.com',initials:'MI'},
+  {id:'U7',name:'Rajesh Patel',role:'Viewer',dept:'Risk',email:'rajesh.patel@company.com',initials:'RP'},
+];
+
+// Live IST date (UTC+5:30)
+function getISTToday(){const now=new Date();const ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return new Date(ist.getFullYear(),ist.getMonth(),ist.getDate());}
+const TODAY=getISTToday();
+
+// ── Make sample data expiry dates realistic relative to TODAY ──
+function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r.toISOString().split('T')[0];}
+// Assign dynamic expiries so demo always has actionable data
+AGREEMENTS[2].expiry=addDays(TODAY,2);   // SAP – expires in 2 days (critical)
+AGREEMENTS[7].expiry=addDays(TODAY,10);  // Insurance – expires in 10 days (warning)
+AGREEMENTS[5].expiry=addDays(TODAY,-30); // Sodexo – expired 30 days ago
+AGREEMENTS[2].status='Signed';
+AGREEMENTS[7].status='Signed';
+AGREEMENTS[5].status='Expired';
+
+// ── NOTIFICATION STATE ──
+let NOTIFICATIONS = [];
+let NOTIF_LOG = []; // history of sent notifications
+let notifSchedulerInterval = null;
+const STATUSES = ['Draft','Under Review','Pending Signature','Signed','Renewed','Expired','Terminated'];
+const TYPES = ['MSA','NDA','License','SaaS','Lease','Employment','Vendor','Partnership','Consulting','DPA','Insurance','Termination'];
+const DEPTS = ['Technology','Finance','HR','Legal','Procurement','Sales','Facilities','Admin','Risk','Strategy','Business Dev','Product'];
+const ROLES = ['Admin','Legal Team','Business User','Viewer'];
+
+/* ═══════════ STATE ═══════════ */
+let S = {
+  isLoggedIn: false,
+  loginError: '',
+  page:'dashboard',
+  selectedAgr:null,      // for detail panel
+  showUpload:false,
+  showEdit:false,
+  showStatus:false,
+  showReminder:false,
+  showConfirmDelete:null, // agreement id
+  showUserEdit:null,      // user id or 'new'
+  showUserDelete:null,    // user id
+  editData:{},            // working copy for edit modal
+  search:'',
+  agrPage:1,
+  filterStatus:'All',
+  filterType:'All',
+  dashFilter:null,        // filter applied from dashboard card click
+  notifTab:'email',
+  uploadFile:null,
+  uploadDrag:false,
+  currentUser:USERS[1],
+};
+
+/* ═══════════ HELPERS ═══════════ */
+function daysUntil(s){if(!s)return null;return Math.ceil((new Date(s)-TODAY)/(864e5));}
+function fmtDate(s){if(!s)return '—';return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function fmtSize(b){if(b<1024)return b+'B';if(b<1048576)return(b/1024).toFixed(1)+'KB';return(b/1048576).toFixed(1)+'MB';}
+function nextId(){const nums=AGREEMENTS.map(a=>parseInt(a.id.split('-')[2]||0));return 'AGR-2024-'+String(Math.max(...nums,12)+1).padStart(3,'0');}
+function esc(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escJson(v){return JSON.stringify(v).replace(/"/g,'&quot;');}
+
+function statusBadge(s){
+  const m={'Signed':'b-signed','Pending Signature':'b-pending','Under Review':'b-review','Expired':'b-expired','Draft':'b-draft','Terminated':'b-terminated','Renewed':'b-renewed'};
+  return `<span class="badge ${m[s]||'b-draft'}">${esc(s)}</span>`;
+}
+function expiryCell(a){
+  const d=daysUntil(a.expiry);
+  if(a.status==='Expired'||a.status==='Terminated')return`<span style="font-size:12px;color:var(--text3)">${fmtDate(a.expiry)}</span>`;
+  if(d===null)return'—';
+  if(d<0)return`<span class="badge b-expired">Overdue</span>`;
+  if(d<=7)return`<span class="badge b-crit">${d}d left</span>`;
+  if(d<=30)return`<span class="badge b-warn">${d}d left</span>`;
+  return`<span style="font-size:12px;color:var(--text3)">${fmtDate(a.expiry)}</span>`;
+}
+function showToast(msg,type='success'){
+  const el=document.createElement('div');
+  el.className=`toast toast-${type}`;
+  el.innerHTML=msg;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),3200);
+}
+function getFilteredAgreements(){
+  let data=[...AGREEMENTS];
+  if(S.dashFilter){
+    const df=S.dashFilter;
+    if(df==='total'){/* all */}
+    else if(df==='signed')data=data.filter(a=>['Signed','Renewed'].includes(a.status));
+    else if(df==='pending')data=data.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status));
+    else if(df==='exp7')data=data.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=7;});
+    else if(df==='exp30')data=data.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;});
+    else if(df==='expired')data=data.filter(a=>a.status==='Expired'||(daysUntil(a.expiry)<0&&!['Terminated'].includes(a.status)));
+    
+  }
+  if(S.search){
+    const q=S.search.toLowerCase();
+    data=data.filter(a=>
+      a.title.toLowerCase().includes(q)||
+      a.id.toLowerCase().includes(q)||
+      a.party.toLowerCase().includes(q)||
+      a.type.toLowerCase().includes(q)||
+      a.dept.toLowerCase().includes(q)||
+      a.owner.toLowerCase().includes(q)||
+      a.status.toLowerCase().includes(q)||
+      a.tags.some(t=>t.toLowerCase().includes(q))
+    );
+  }
+  if(S.filterStatus!=='All')data=data.filter(a=>a.status===S.filterStatus);
+  if(S.filterType!=='All')data=data.filter(a=>a.type===S.filterType);
+  return data;
+}
+
+/* ═══════════ ICONS ═══════════ */
+const IC={
+  scale:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L4 9v12h4v-6h8v6h4V9L12 3zm0 2.5L18 10v1H6V10l6-4.5z"/></svg>`,
+  grid:(n=16)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+  doc:(n=16)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  bell:(n=16)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>`,
+  bar:(n=16)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  users:(n=16)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>`,
+  search:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  plus:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
+  x:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  edit:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  dl:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+  trash:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg>`,
+  bell2:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>`,
+  send:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
+  check:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>`,
+  arrow:(n=14)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>`,
+  pdf:(n=20)=>`<svg width="${n}" height="${n}" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+};
+
+/* ═══════════ SIDEBAR ═══════════ */
+function renderSidebar(){
+  const nav=[
+    {sec:'Main'},{id:'dashboard',icon:IC.grid,label:'Dashboard'},
+    {id:'agreements',icon:IC.doc,label:'Agreements',badge:AGREEMENTS.filter(a=>['Pending Signature','Under Review'].includes(a.status)).length},
+    {sec:'Management'},{id:'notifications',icon:IC.bell,label:'Notifications & Alerts'},
+    {id:'reports',icon:IC.bar,label:'Reports'},
+    {sec:'Admin'},{id:'users',icon:IC.users,label:'User Management'},
+  ];
+  return `
+    <div class="sidebar-logo"><div class="logo-mark">
+      <div class="logo-icon">${IC.scale}</div>
+      <div><div class="logo-text">LexOps</div><div class="logo-sub">Legal Portal</div></div>
+    </div></div>
+    <nav class="sidebar-nav">
+      ${nav.map(n=>{
+        if(n.sec)return`<div class="nav-section">${n.sec}</div>`;
+        const b=n.badge?`<span class="nav-badge">${n.badge}</span>`:'';
+        return`<div class="nav-item${S.page===n.id?' active':''}" data-page="${n.id}">${n.icon(16)}&nbsp;${n.label}${b}</div>`;
+      }).join('')}
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">${S.currentUser.initials}</div>
+      <div><div class="user-name">${S.currentUser.name}</div><div class="user-role">${S.currentUser.role}</div></div>
+    </div>`;
+}
+
+/* ═══════════ TOPBAR ═══════════ */
+function renderTopbar(){
+  const titles={dashboard:'Dashboard',agreements:'Agreement Master',notifications:'Notifications & Alerts',reports:'Reports',users:'User Management'};
+  const dashFilterLabels={total:'All Agreements',signed:'Signed / Active',pending:'Pending Action',exp7:'Expiring in 7 Days',exp30:'Expiring in 30 Days',expired:'Expired'};
+  const showSearch=S.page==='agreements';
+  return`
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="page-title">${titles[S.page]}</div>
+        ${S.page==='agreements'&&S.dashFilter?`<span class="page-breadcrumb">› ${dashFilterLabels[S.dashFilter]||''} <span style="cursor:pointer;color:var(--teal)" id="clear-dash-filter">✕ Clear filter</span></span>`:''}
+        ${showSearch?`<div class="search-box">${IC.search(14)}<input id="search-input" placeholder="Search by title, ID, party, type, tags…" value="${esc(S.search)}" oninput="S.search=this.value;renderTable()"/></div>`:''}
+      </div>
+      <div class="topbar-right">
+        <div class="notif-btn">${IC.bell(16)}<div class="notif-dot"></div></div>
+        <button class="btn btn-primary" id="btn-upload">${IC.plus(14)} New Agreement</button>
+        <button class="btn" id="btn-logout" style="color:var(--text3);gap:5px" title="Sign out">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Logout
+        </button>
+      </div>
+    </div>`;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   NOTIFICATION AGENT — Slack + Email (Simulation Layer)
+   In production: replace fetch() calls with real endpoints.
+   Slack  → POST to SLACK_WEBHOOK_URL
+   Email  → POST to /api/send-email  (nodemailer / SendGrid)
+══════════════════════════════════════════════════════════════ */
+
+const NOTIF_CONFIG = {
+  slackWebhook: '', // paste your Slack incoming webhook URL here
+  emailTo: 'legal@company.com',
+  emailCC: 'clo@company.com',
+  enableSlack: true,
+  enableEmail: true,
+  reminderDays: [30, 15, 7, 3, 1],
+};
+
+// Dedupe guard — tracks which alerts were already sent today
+const SENT_TODAY = new Set(JSON.parse(sessionStorage.getItem('lexops_sent')||'[]'));
+function markSent(key){ SENT_TODAY.add(key); sessionStorage.setItem('lexops_sent',JSON.stringify([...SENT_TODAY])); }
+function wasSent(key){ return SENT_TODAY.has(key); }
+
+// ── Build a Slack block-kit message ──
+function buildSlackPayload(evt){
+  const emoji = {critical:'🚨',warning:'⚠️',info:'ℹ️',expired:'🔴',pending:'🟡'}[evt.type]||'📋';
+  return {
+    text: `${emoji} *LexOps Alert* — ${evt.title}`,
+    blocks:[
+      {type:'header',text:{type:'plain_text',text:`${emoji} LexOps Legal Portal — ${evt.title}`,emoji:true}},
+      {type:'section',fields:[
+        {type:'mrkdwn',text:`*Agreement:*\n${evt.agreement}`},
+        {type:'mrkdwn',text:`*Type:*\n${evt.agreementType||'—'}`},
+        {type:'mrkdwn',text:`*Owner:*\n${evt.owner}`},
+        {type:'mrkdwn',text:`*Priority:*\n${evt.priority||'—'}`},
+      ]},
+      {type:'section',text:{type:'mrkdwn',text:`*Details:* ${evt.message}`}},
+      {type:'context',elements:[{type:'mrkdwn',text:`📅 Checked: ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST  |  🏢 LexOps Legal Portal`}]},
+      {type:'actions',elements:[{type:'button',style:'danger',text:{type:'plain_text',text:'View Agreement'},url:'#',action_id:'view_agreement'}]},
+    ]
+  };
+}
+
+// ── Build an HTML email body ──
+function buildEmailBody(evt){
+  const color={critical:'#DC2626',warning:'#D97706',info:'#2563EB',expired:'#7C3AED',pending:'#D97706'}[evt.type]||'#0D9488';
+  return `<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;background:#F8FAFC">
+  <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+    <div style="background:#0B1829;padding:20px 24px;display:flex;align-items:center;gap:12px">
+      <span style="font-size:22px">⚖</span>
+      <div style="color:white;font-size:18px;font-weight:700">LexOps Legal Portal</div>
+    </div>
+    <div style="padding:24px">
+      <div style="background:${color}18;border-left:4px solid ${color};border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:20px">
+        <div style="font-size:14px;font-weight:700;color:${color}">${evt.title}</div>
+        <div style="font-size:13px;color:#374151;margin-top:4px">${evt.message}</div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <tr style="background:#F1F5F9"><td style="padding:10px 14px;font-weight:600;color:#6B7280;width:140px">Agreement</td><td style="padding:10px 14px;color:#0B1829;font-weight:500">${evt.agreement}</td></tr>
+        <tr><td style="padding:10px 14px;font-weight:600;color:#6B7280">Type</td><td style="padding:10px 14px;color:#374151">${evt.agreementType||'—'}</td></tr>
+        <tr style="background:#F1F5F9"><td style="padding:10px 14px;font-weight:600;color:#6B7280">Owner</td><td style="padding:10px 14px;color:#374151">${evt.owner}</td></tr>
+        <tr><td style="padding:10px 14px;font-weight:600;color:#6B7280">Expiry Date</td><td style="padding:10px 14px;color:#374151">${evt.expiry||'—'}</td></tr>
+        <tr style="background:#F1F5F9"><td style="padding:10px 14px;font-weight:600;color:#6B7280">Priority</td><td style="padding:10px 14px;color:#374151">${evt.priority||'—'}</td></tr>
+      </table>
+      <div style="margin-top:20px;text-align:center">
+        <a href="#" style="background:#0D9488;color:white;padding:11px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;display:inline-block">View Agreement in LexOps →</a>
+      </div>
+    </div>
+    <div style="padding:16px 24px;background:#F8FAFC;border-top:1px solid #E5E7EB;font-size:11px;color:#9CA3AF;text-align:center">
+      LexOps Legal Portal — Automated Notification &nbsp;·&nbsp; ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST
+    </div>
+  </div></body></html>`;
+}
+
+// ── Core dispatcher — sends to Slack and/or Email ──
+async function dispatchNotification(evt){
+  const key = `${evt.agreementId}_${evt.type}_${TODAY.toISOString().split('T')[0]}`;
+  if(wasSent(key)) return; // dedupe — only once per day per agreement per event type
+  markSent(key);
+
+  // Log to in-app history
+  NOTIF_LOG.unshift({
+    time: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'})+' IST',
+    type: evt.type,
+    title: evt.title,
+    agreement: evt.agreement,
+    channel: [NOTIF_CONFIG.enableEmail?'Email':'', NOTIF_CONFIG.enableSlack?'Slack':''].filter(Boolean).join(' + '),
+    owner: evt.owner,
+    sent: true,
+  });
+  if(NOTIF_LOG.length>50) NOTIF_LOG.length=50;
+
+  // ── SLACK ──
+  if(NOTIF_CONFIG.enableSlack && NOTIF_CONFIG.slackWebhook){
+    try{
+      await fetch(NOTIF_CONFIG.slackWebhook,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(buildSlackPayload(evt))
+      });
+    }catch(e){console.warn('[LexOps Slack]',e.message);}
+  } else if(NOTIF_CONFIG.enableSlack){
+    // Simulation — log to console with full payload
+    console.log('%c[LexOps Slack Notification]','color:#4A154B;font-weight:bold;font-size:13px', buildSlackPayload(evt));
+  }
+
+  // ── EMAIL ──
+  if(NOTIF_CONFIG.enableEmail){
+    const emailPayload = {
+      to: evt.ownerEmail || NOTIF_CONFIG.emailTo,
+      cc: NOTIF_CONFIG.emailCC,
+      subject: `[LexOps] ${evt.title} — ${evt.agreement}`,
+      html: buildEmailBody(evt),
+    };
+    try{
+      // POST to your backend email endpoint:
+      // await fetch('/api/send-email', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(emailPayload)});
+      // Simulation — log to console
+      console.log('%c[LexOps Email Notification]','color:#1E40AF;font-weight:bold;font-size:13px', emailPayload.subject, emailPayload);
+    }catch(e){console.warn('[LexOps Email]',e.message);}
+  }
+
+  showToast(`🔔 Alert sent: ${evt.title.substring(0,40)}…`,'info');
+}
+
+// ── Main scheduler — checks all agreements against today ──
+function runNotificationAgent(){
+  const today = getISTToday();
+  const events = [];
+
+  AGREEMENTS.forEach(a=>{
+    const d = daysUntil(a.expiry);
+    const base = {agreementId:a.id, agreement:a.title, agreementType:a.type, owner:a.owner, priority:a.priority, expiry:fmtDate(a.expiry)};
+
+    // 1. EXPIRED
+    if((a.status==='Expired' || (d!==null&&d<0)) && !['Terminated'].includes(a.status)){
+      events.push({...base, type:'expired', title:'Agreement Expired', message:`This agreement expired on ${fmtDate(a.expiry)}. Immediate action required to renew or terminate.`});
+    }
+    // 2. CRITICAL — expires in 1 or 2 days
+    else if(d!==null && d>=0 && d<=2 && ['Signed','Renewed','Under Review'].includes(a.status)){
+      events.push({...base, type:'critical', title:`Expires in ${d===0?'Today':d+' day'+(d>1?'s':'')} — CRITICAL`, message:`Agreement expires ${d===0?'today':d===1?'tomorrow':'in '+d+' days'} on ${fmtDate(a.expiry)}. Renew immediately.`});
+    }
+    // 3. WARNING — expires in 3–30 days
+    else if(d!==null && d>2 && d<=30 && ['Signed','Renewed','Under Review'].includes(a.status)){
+      const milestone = NOTIF_CONFIG.reminderDays.find(m=>d<=m);
+      if(milestone){
+        events.push({...base, type:'warning', title:`Expiring in ${d} Days — Reminder`, message:`Agreement expires on ${fmtDate(a.expiry)} (${d} days remaining). Please initiate renewal process.`});
+      }
+    }
+    // 4. PENDING SIGNATURE > 5 days
+    if(a.status==='Pending Signature'){
+      events.push({...base, type:'pending', title:'Pending Signature — Action Required', message:`Agreement has been awaiting counter-signature. Please follow up with ${a.owner} to expedite.`});
+    }
+  });
+
+  // Dispatch top-priority events (max 5 at a time to avoid spam)
+  const priorityOrder = {critical:0, expired:1, warning:2, pending:3, info:4};
+  events.sort((a,b)=>(priorityOrder[a.type]||9)-(priorityOrder[b.type]||9));
+  events.slice(0,5).forEach(evt=>dispatchNotification(evt));
+
+  return events;
+}
+
+// ── Auto-run agent at startup and every hour ──
+function startNotificationScheduler(){
+  if(notifSchedulerInterval) clearInterval(notifSchedulerInterval);
+  setTimeout(()=>{ if(S.isLoggedIn){ runNotificationAgent(); } }, 2000); // 2s after login
+  notifSchedulerInterval = setInterval(()=>{ if(S.isLoggedIn) runNotificationAgent(); }, 3600000); // hourly
+}
+
+// ── Generate live alerts for dashboard display ──
+function generateDashboardAlerts(){
+  const svgWarn=`<svg class="alert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+  const svgClock=`<svg class="alert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+  const svgBell=`<svg class="alert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>`;
+
+  const alerts = [];
+
+  // Critical: expiring ≤2 days
+  AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!==null&&d>=0&&d<=2&&['Signed','Renewed','Under Review'].includes(a.status);})
+    .forEach(a=>{const d=daysUntil(a.expiry);
+      alerts.push({cls:'a-crit',icon:svgWarn,icol:'var(--red)',
+        text:`<strong>${esc(a.title)}</strong> expires ${d===0?'TODAY':d===1?'tomorrow':'in '+d+' days'} (${fmtDate(a.expiry)}). Immediate renewal required — owner: ${a.owner}.`,
+        time:'Just now'});
+    });
+
+  // Expired
+  AGREEMENTS.filter(a=>a.status==='Expired'||(daysUntil(a.expiry)<0&&!['Terminated'].includes(a.status)))
+    .slice(0,2).forEach(a=>{
+      alerts.push({cls:'a-crit',icon:svgWarn,icol:'var(--red)',
+        text:`<strong>${esc(a.title)}</strong> has <strong>expired</strong> (${fmtDate(a.expiry)}). Renewal or termination action required immediately.`,
+        time:Math.abs(daysUntil(a.expiry))+'d ago'});
+    });
+
+  // Warning: expiring 3–30 days
+  AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>2&&d<=30&&['Signed','Renewed','Under Review'].includes(a.status);})
+    .sort((a,b)=>daysUntil(a.expiry)-daysUntil(b.expiry)).slice(0,2)
+    .forEach(a=>{const d=daysUntil(a.expiry);
+      alerts.push({cls:'a-warn',icon:svgClock,icol:'var(--amber)',
+        text:`<strong>${esc(a.title)}</strong> expires in <strong>${d} days</strong> (${fmtDate(a.expiry)}). ${a.priority==='High'?'High priority — ':''}Please initiate renewal.`,
+        time:d+'d left'});
+    });
+
+  // Info: pending signatures
+  const pending = AGREEMENTS.filter(a=>a.status==='Pending Signature');
+  if(pending.length){
+    const names = pending.slice(0,2).map(a=>`<strong>${esc(a.title)}</strong>`).join(' and ');
+    alerts.push({cls:'a-info',icon:svgBell,icol:'var(--blue)',
+      text:`${names}${pending.length>2?` and ${pending.length-2} more`:''} awaiting counter-signature. Follow up with owners to expedite.`,
+      time:'Pending'});
+  }
+
+  // Under review pending
+  const review = AGREEMENTS.filter(a=>a.status==='Under Review');
+  if(review.length){
+    alerts.push({cls:'a-info',icon:svgBell,icol:'var(--blue)',
+      text:`<strong>${review.length} agreement${review.length>1?'s':''}</strong> currently under legal review: ${review.slice(0,2).map(a=>esc(a.title)).join(', ')}${review.length>2?'…':''}.`,
+      time:'Active'});
+  }
+
+  if(alerts.length===0){
+    return`<div class="alert-item a-info">${svgBell}<div class="alert-text" style="color:var(--green)"><strong>All clear!</strong> No critical alerts at this time. All agreements are within compliance thresholds.</div><div class="alert-time">Now</div></div>`;
+  }
+
+  return alerts.slice(0,4).map(al=>`
+    <div class="alert-item ${al.cls}">
+      <span style="color:${al.icol}">${al.icon}</span>
+      <div class="alert-text">${al.text}</div>
+      <div class="alert-time">${al.time}</div>
+    </div>`).join('');
+}
+
+/* ═══════════ NOTIFICATION SETTINGS PAGE HELPERS ═══════════ */
+function renderNotifHistory(){
+  if(NOTIF_LOG.length===0){
+    return`<tr><td colspan="5" style="text-align:center;padding:32px;color:var(--text3)">No notifications sent yet. The agent runs automatically every hour.</td></tr>`;
+  }
+  return NOTIF_LOG.map(n=>`<tr>
+    <td class="td-mono" style="font-size:11px;color:var(--text3)">${n.time}</td>
+    <td><span class="badge ${n.type==='critical'||n.type==='expired'?'b-expired':n.type==='warning'?'b-pending':'b-review'}">${n.type}</span></td>
+    <td class="td-bold" style="font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(n.agreement)}</td>
+    <td style="font-size:12px;color:var(--text3)">${n.channel||'—'}</td>
+    <td style="font-size:12px">${n.owner}</td>
+  </tr>`).join('');
+}
+
+/* ═══════════ DASHBOARD ═══════════ */
+function dashboard(){
+  const total=AGREEMENTS.length;
+  const signed=AGREEMENTS.filter(a=>['Signed','Renewed'].includes(a.status)).length;
+  const pending=AGREEMENTS.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status)).length;
+  const exp7=AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=7;}).length;
+  const exp30=AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;}).length;
+  const expired=AGREEMENTS.filter(a=>a.status==='Expired'||(daysUntil(a.expiry)<0&&a.status!=='Terminated')).length;
+  const high=AGREEMENTS.filter(a=>a.priority==='High').length;
+
+  const kpiIcon=(path)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+
+  return`
+  <!-- KPI CARDS -->
+  <div class="dash-grid">
+    <div class="kpi-card kpi-teal" data-dash="total">
+      <div class="kpi-icon">${kpiIcon('<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>')}</div>
+      <div class="kpi-val">${total}</div>
+      <div class="kpi-label">Total Agreements</div>
+      <div class="kpi-sub">Active portfolio</div>
+      <div class="kpi-pill">↑ 4 this month</div>
+    </div>
+    <div class="kpi-card kpi-green" data-dash="signed">
+      <div class="kpi-icon">${kpiIcon('<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>')}</div>
+      <div class="kpi-val">${signed}</div>
+      <div class="kpi-label">Signed & Active</div>
+      <div class="kpi-sub">${Math.round(signed/total*100)}% of portfolio</div>
+      <div class="kpi-pill">✓ Executed</div>
+    </div>
+    <div class="kpi-card kpi-amber" data-dash="pending">
+      <div class="kpi-icon">${kpiIcon('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>')}</div>
+      <div class="kpi-val">${pending}</div>
+      <div class="kpi-label">Pending Action</div>
+      <div class="kpi-sub">Awaiting review or sign</div>
+      <div class="kpi-pill">⚠ Needs attention</div>
+    </div>
+    <div class="kpi-card kpi-red" data-dash="exp7">
+      <div class="kpi-icon">${kpiIcon('<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>')}</div>
+      <div class="kpi-val">${exp7}</div>
+      <div class="kpi-label">Expiring in 7 Days</div>
+      <div class="kpi-sub">Immediate renewal needed</div>
+      <div class="kpi-pill">● Critical</div>
+    </div>
+    <div class="kpi-card kpi-blue" data-dash="exp30">
+      <div class="kpi-icon">${kpiIcon('<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>')}</div>
+      <div class="kpi-val">${exp30}</div>
+      <div class="kpi-label">Expiring in 30 Days</div>
+      <div class="kpi-sub">Requires proactive review</div>
+      <div class="kpi-pill">↗ Plan renewals</div>
+    </div>
+    <div class="kpi-card kpi-slate" data-dash="expired">
+      <div class="kpi-icon">${kpiIcon('<path d="M18.36 6.64a9 9 0 11-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/>')}</div>
+      <div class="kpi-val">${expired}</div>
+      <div class="kpi-label">Expired</div>
+      <div class="kpi-sub">Renewal overdue</div>
+      <div class="kpi-pill">↓ Action required</div>
+    </div>
+    <div class="kpi-card kpi-purple" data-dash="total">
+      <div class="kpi-icon">${kpiIcon('<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>')}</div>
+      <div class="kpi-val">${USERS.length}</div>
+      <div class="kpi-label">Team Members</div>
+      <div class="kpi-sub">Across ${new Set(USERS.map(u=>u.role)).size} roles</div>
+      <div class="kpi-pill">↑ Active</div>
+    </div>
+    <div class="kpi-card kpi-red" style="background:linear-gradient(135deg,#DC2626,#9F1239);" data-dash="pending">
+      <div class="kpi-icon">${kpiIcon('<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>')}</div>
+      <div class="kpi-val">${high}</div>
+      <div class="kpi-label">High Priority</div>
+      <div class="kpi-sub">Require immediate focus</div>
+      <div class="kpi-pill">● Urgent</div>
+    </div>
+  </div>
+
+  <!-- ALERTS — fully dynamic based on live AGREEMENTS data -->
+  <div class="alerts-section">${generateDashboardAlerts()}</div>
+
+  <!-- ROW 1: 3 equal chart cards, no overlap -->
+  <div class="chart-grid-top">
+
+    <!-- Card 1: Status Donut — chart left, legend right -->
+    <div class="ccard">
+      <div class="ccard-header">
+        <div><div class="ccard-title">Agreement Status</div><div class="ccard-sub">Portfolio health overview</div></div>
+        <div class="ccard-badge">${total} total</div>
+      </div>
+      <!-- split: chart 55% | legend 45% -->
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:160px;height:160px;flex-shrink:0;position:relative">
+          <canvas id="chart-donut"></canvas>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:1">
+            <div id="donut-num" style="font-size:24px;font-weight:700;font-family:'DM Serif Display',serif;color:var(--text);line-height:1">${total}</div>
+            <div id="donut-lbl" style="font-size:9px;color:var(--text3);margin-top:2px">agreements</div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div class="donut-legend" id="legend-status" style="grid-template-columns:1fr;gap:3px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Activity Line chart -->
+    <div class="ccard">
+      <div class="ccard-header">
+        <div><div class="ccard-title">Agreement Activity</div><div class="ccard-sub">New vs signed, Jan–Jul 2024</div></div>
+        <div style="display:flex;gap:10px;font-size:11px;color:var(--text3)">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:2.5px;background:#0D9488;border-radius:2px;display:inline-block"></span>New</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:2.5px;background:#6366F1;border-radius:2px;display:inline-block"></span>Signed</span>
+        </div>
+      </div>
+      <div style="height:160px"><canvas id="chart-trend"></canvas></div>
+      <div class="ccard-divider"></div>
+      <div class="mini-stats">
+        <div class="mini-stat"><div class="mini-stat-num" data-type="new" style="color:var(--teal)">—</div><div class="mini-stat-lbl">Total New</div></div>
+        <div class="mini-stat"><div class="mini-stat-num" data-type="signed" style="color:#6366F1">—</div><div class="mini-stat-lbl">Total Signed</div></div>
+        <div class="mini-stat"><div class="mini-stat-num" data-type="conv" style="color:var(--amber)">—</div><div class="mini-stat-lbl">Conversion</div></div>
+      </div>
+    </div>
+
+    <!-- Card 3: Priority — donut left, stats right -->
+    <div class="ccard">
+      <div class="ccard-header">
+        <div><div class="ccard-title">Priority Split</div><div class="ccard-sub">Agreement urgency breakdown</div></div>
+        <div class="ccard-badge">${AGREEMENTS.length} total</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:160px;height:160px;flex-shrink:0">
+          <canvas id="chart-priority"></canvas>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+          ${[['High','#EF4444',AGREEMENTS.filter(a=>a.priority==='High').length],['Medium','#F59E0B',AGREEMENTS.filter(a=>a.priority==='Medium').length],['Low','#10B981',AGREEMENTS.filter(a=>a.priority==='Low').length]].map(([l,c,n])=>`
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:10px;height:10px;border-radius:50%;background:${c};flex-shrink:0"></div>
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+                <span style="font-size:11.5px;font-weight:500;color:var(--text2)">${l}</span>
+                <span style="font-size:11px;font-family:var(--mono);font-weight:600;color:${c}">${n}</span>
+              </div>
+              <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:${Math.round(n/AGREEMENTS.length*100)}%;background:${c};border-radius:3px;transition:width .6s ease"></div>
+              </div>
+            </div>
+          </div>`).join('')}
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;padding-top:8px;border-top:1px solid var(--border)">
+            ${Math.round(AGREEMENTS.filter(a=>a.priority==='High').length/AGREEMENTS.length*100)}% high priority requires immediate attention
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Type cards (calendar style) + Expiry/Dept -->
+  <div class="chart-grid-bottom">
+    <div class="ccard">
+      <div class="ccard-header">
+        <div><div class="ccard-title">Agreements by Type</div><div class="ccard-sub">Category distribution across portfolio</div></div>
+        <div class="ccard-badge">${new Set(AGREEMENTS.map(a=>a.type)).size} types</div>
+      </div>
+      ${typeCards()}
+    </div>
+    <div class="ccard">
+      <div class="ccard-header">
+        <div><div class="ccard-title">Expiry Calendar</div><div class="ccard-sub">Agreements expiring by month</div></div>
+      </div>
+      ${expiryCalendar()}
+      <div class="ccard-divider"></div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px">By Department</div>
+      ${deptMiniBar()}
+    </div>
+  </div>
+
+  <!-- ROW 3: Upcoming & Pending tables -->
+  <div class="chart-grid-bottom">
+    ${upcomingExpiryTable()}
+    ${pendingTable()}
+  </div>`;
+}
+
+function typeCards(){
+  const typeCounts={};
+  AGREEMENTS.forEach(a=>{typeCounts[a.type]=(typeCounts[a.type]||0)+1;});
+  const sorted=Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]);
+  const configs=[
+    {bg:'#EFF6FF',border:'#BFDBFE',txt:'#1E40AF',sub:'#3B82F6'},
+    {bg:'#F0FDF4',border:'#BBF7D0',txt:'#166534',sub:'#22C55E'},
+    {bg:'#FFFBEB',border:'#FDE68A',txt:'#92400E',sub:'#F59E0B'},
+    {bg:'#FDF4FF',border:'#E9D5FF',txt:'#6B21A8',sub:'#A855F7'},
+    {bg:'#FFF1F2',border:'#FECDD3',txt:'#9F1239',sub:'#F43F5E'},
+    {bg:'#F0FDFA',border:'#99F6E4',txt:'#134E4A',sub:'#14B8A6'},
+    {bg:'#FEF3C7',border:'#FCD34D',txt:'#78350F',sub:'#D97706'},
+    {bg:'#EDE9FE',border:'#C4B5FD',txt:'#4C1D95',sub:'#8B5CF6'},
+    {bg:'#FCE7F3',border:'#F9A8D4',txt:'#831843',sub:'#EC4899'},
+    {bg:'#E0F2FE',border:'#7DD3FC',txt:'#0C4A6E',sub:'#0EA5E9'},
+    {bg:'#ECFDF5',border:'#6EE7B7',txt:'#064E3B',sub:'#10B981'},
+    {bg:'#FEF2F2',border:'#FECACA',txt:'#7F1D1D',sub:'#EF4444'},
+  ];
+  return`<div class="type-cards-grid">${sorted.map(([type,count],i)=>{
+    const cfg=configs[i%configs.length];
+    return`<div class="type-card" style="background:${cfg.bg};border-color:${cfg.border}" data-dash="total">
+      <div class="type-card-name" style="color:${cfg.sub}">${type}</div>
+      <div class="type-card-num" style="color:${cfg.txt}">${count}</div>
+      <div class="type-card-lbl" style="color:${cfg.sub}">${count===1?'agreement':'agreements'}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function expiryCalendar(){
+  const months=[];
+  for(let i=1;i<=6;i++){
+    const d=new Date(TODAY.getFullYear(),TODAY.getMonth()+i,1);
+    months.push({name:d.toLocaleDateString('en-IN',{month:'short'}).toUpperCase(),year:d.getFullYear(),month:d.getMonth()});
+  }
+  const counts=months.map(m=>AGREEMENTS.filter(a=>{
+    if(!a.expiry)return false;
+    const ed=new Date(a.expiry);
+    return ed.getFullYear()===m.year&&ed.getMonth()===m.month;
+  }).length);
+  const maxC=Math.max(...counts,1);
+  const cfg=counts.map(c=>{
+    if(c===0)return{bg:'var(--bg3)',border:'var(--border)',txt:'var(--text3)',sub:'var(--text3)',empty:true};
+    const r=c/maxC;
+    if(r>0.7)return{bg:'#FEF2F2',border:'#FCA5A5',txt:'#991B1B',sub:'#DC2626'};
+    if(r>0.3)return{bg:'#FEF3C7',border:'#FCD34D',txt:'#92400E',sub:'#D97706'};
+    return{bg:'#D1FAE5',border:'#6EE7B7',txt:'#065F46',sub:'#059669'};
+  });
+  return`<div class="heat-months">
+    ${months.map((m,i)=>`
+      <div class="heat-month" style="background:${cfg[i].bg};border-color:${cfg[i].border}">
+        <div class="heat-month-name" style="color:${cfg[i].sub}">${m.name}</div>
+        ${cfg[i].empty
+          ? `<div style="font-size:20px;color:var(--border2)">—</div><div class="heat-month-lbl" style="color:var(--text3)">none</div>`
+          : `<div class="heat-month-num" style="color:${cfg[i].txt}">${counts[i]}</div><div class="heat-month-lbl" style="color:${cfg[i].sub}">expiring</div>`}
+      </div>`).join('')}
+  </div>`;
+}
+
+function deptMiniBar(){
+  const depts={};
+  AGREEMENTS.forEach(a=>{depts[a.dept]=(depts[a.dept]||0)+1;});
+  const sorted=Object.entries(depts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxV=sorted[0]?.[1]||1;
+  const colors=['#0D9488','#2563EB','#D97706','#7C3AED','#059669'];
+  return`<div class="dept-bars">${sorted.map(([d,n],i)=>`
+    <div class="dept-bar-row">
+      <div class="dept-bar-label">${d}</div>
+      <div class="dept-bar-track"><div class="dept-bar-fill" style="width:${Math.round(n/maxV*100)}%;background:${colors[i]}"></div></div>
+      <div class="dept-bar-count">${n}</div>
+    </div>`).join('')}</div>`;
+}
+
+function initCharts(){
+  if(typeof Chart==='undefined') return;
+  // destroy all existing instances
+  if(Chart.instances){Object.values(Chart.instances).forEach(c=>{try{c.destroy();}catch(e){}});}
+
+  Chart.defaults.font.family="'DM Sans',sans-serif";
+  Chart.defaults.plugins.legend.display=false;
+  Chart.defaults.plugins.tooltip.cornerRadius=10;
+  Chart.defaults.plugins.tooltip.padding=12;
+  Chart.defaults.plugins.tooltip.backgroundColor='rgba(11,24,41,0.92)';
+  Chart.defaults.plugins.tooltip.titleColor='#fff';
+  Chart.defaults.plugins.tooltip.bodyColor='rgba(255,255,255,0.82)';
+  Chart.defaults.plugins.tooltip.bodyFont={size:12};
+  Chart.defaults.plugins.tooltip.titleFont={size:12,weight:'600'};
+
+  /* ── 1. STATUS DONUT ── */
+  const statusData=[
+    {l:'Signed',n:AGREEMENTS.filter(a=>a.status==='Signed').length,c:'#059669'},
+    {l:'Renewed',n:AGREEMENTS.filter(a=>a.status==='Renewed').length,c:'#0369A1'},
+    {l:'Pending Sig.',n:AGREEMENTS.filter(a=>a.status==='Pending Signature').length,c:'#F59E0B'},
+    {l:'Under Review',n:AGREEMENTS.filter(a=>a.status==='Under Review').length,c:'#3B82F6'},
+    {l:'Draft',n:AGREEMENTS.filter(a=>a.status==='Draft').length,c:'#94A3B8'},
+    {l:'Expired',n:AGREEMENTS.filter(a=>a.status==='Expired').length,c:'#EF4444'},
+    {l:'Terminated',n:AGREEMENTS.filter(a=>a.status==='Terminated').length,c:'#8B5CF6'},
+  ].filter(d=>d.n>0);
+  const totalAgt=statusData.reduce((s,d)=>s+d.n,0);
+  const dc=document.getElementById('chart-donut');
+  if(dc){
+    dc.width=160; dc.height=160;
+    new Chart(dc,{
+      type:'doughnut',
+      data:{labels:statusData.map(d=>d.l),datasets:[{data:statusData.map(d=>d.n),backgroundColor:statusData.map(d=>d.c),borderWidth:3,borderColor:'#fff',hoverOffset:6,spacing:1}]},
+      options:{
+        responsive:false,
+        maintainAspectRatio:false,
+        cutout:'68%',
+        animation:{animateRotate:true,duration:900,easing:'easeOutQuart'},
+        layout:{padding:4},
+        plugins:{tooltip:{callbacks:{label:ctx=>`  ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/totalAgt*100)}%)`}}},
+        onHover:(e,el)=>{
+          const num=document.getElementById('donut-num'),lbl=document.getElementById('donut-lbl');
+          if(!num||!lbl)return;
+          if(el.length){const d=statusData[el[0].index];num.textContent=d.n;lbl.textContent=d.l;}
+          else{num.textContent=totalAgt;lbl.textContent='agreements';}
+        }
+      }
+    });
+    const leg=document.getElementById('legend-status');
+    if(leg) leg.innerHTML=statusData.map(d=>`
+      <div class="dl-item">
+        <div class="dl-dot" style="background:${d.c}"></div>
+        <span style="flex:1">${d.l}</span>
+        <span class="dl-val">${d.n}</span>
+        <span style="font-size:10px;color:var(--text3);margin-left:4px;min-width:26px;text-align:right">${Math.round(d.n/totalAgt*100)}%</span>
+      </div>`).join('');
+  }
+
+  /* ── 2. AREA LINE: Activity Trend — last 7 months dynamic ── */
+  const tc=document.getElementById('chart-trend');
+  if(tc){
+    // Build last 7 months labels and compute real counts from AGREEMENTS
+    const trendMonths=[];
+    for(let i=6;i>=0;i--){
+      const d=new Date(TODAY.getFullYear(),TODAY.getMonth()-i,1);
+      trendMonths.push({label:d.toLocaleDateString('en-IN',{month:'short'}),year:d.getFullYear(),month:d.getMonth()});
+    }
+    const newCounts=trendMonths.map(m=>AGREEMENTS.filter(a=>{
+      if(!a.start)return false;
+      const sd=new Date(a.start);
+      return sd.getFullYear()===m.year&&sd.getMonth()===m.month;
+    }).length);
+    const signedCounts=trendMonths.map(m=>AGREEMENTS.filter(a=>{
+      if(!a.signing)return false;
+      const sd=new Date(a.signing);
+      return sd.getFullYear()===m.year&&sd.getMonth()===m.month&&['Signed','Renewed'].includes(a.status);
+    }).length);
+    const totalNew=newCounts.reduce((s,v)=>s+v,0);
+    const totalSigned=signedCounts.reduce((s,v)=>s+v,0);
+    const conversion=totalNew>0?Math.round(totalSigned/totalNew*100):0;
+    // Update mini stats dynamically
+    const msNew=document.querySelector('.mini-stat-num[data-type="new"]');
+    const msSigned=document.querySelector('.mini-stat-num[data-type="signed"]');
+    const msConv=document.querySelector('.mini-stat-num[data-type="conv"]');
+    if(msNew)msNew.textContent=totalNew||AGREEMENTS.filter(a=>a.start).length;
+    if(msSigned)msSigned.textContent=totalSigned||AGREEMENTS.filter(a=>['Signed','Renewed'].includes(a.status)).length;
+    if(msConv)msConv.textContent=(conversion||Math.round(AGREEMENTS.filter(a=>['Signed','Renewed'].includes(a.status)).length/AGREEMENTS.length*100))+'%';
+    const ctx2=tc.getContext('2d');
+    const h=tc.parentElement.clientHeight||160;
+    const grad1=ctx2.createLinearGradient(0,0,0,h);
+    grad1.addColorStop(0,'rgba(13,148,136,0.18)');grad1.addColorStop(1,'rgba(13,148,136,0)');
+    const grad2=ctx2.createLinearGradient(0,0,0,h);
+    grad2.addColorStop(0,'rgba(99,102,241,0.12)');grad2.addColorStop(1,'rgba(99,102,241,0)');
+    new Chart(tc,{
+      type:'line',
+      data:{
+        labels:trendMonths.map(m=>m.label),
+        datasets:[
+          {label:'New',data:newCounts,borderColor:'#0D9488',backgroundColor:grad1,fill:true,tension:0.4,borderWidth:2.5,pointBackgroundColor:'#fff',pointBorderColor:'#0D9488',pointBorderWidth:2,pointRadius:4,pointHoverRadius:7},
+          {label:'Signed',data:signedCounts,borderColor:'#6366F1',backgroundColor:grad2,fill:true,tension:0.4,borderWidth:2.5,pointBackgroundColor:'#fff',pointBorderColor:'#6366F1',pointBorderWidth:2,pointRadius:4,pointHoverRadius:7},
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        animation:{duration:900,easing:'easeOutQuart'},
+        scales:{
+          x:{grid:{display:false},ticks:{font:{size:11},color:'#9CA3AF',maxRotation:0},border:{display:false}},
+          y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10},color:'#9CA3AF',stepSize:1,maxTicksLimit:6,padding:4},beginAtZero:true,max:6,border:{display:false}}
+        },
+        plugins:{tooltip:{mode:'index',intersect:false},legend:{display:false}}
+      }
+    });
+  }
+
+  /* ── 3. PRIORITY DOUGHNUT ── */
+  const pc=document.getElementById('chart-priority');
+  if(pc){
+    pc.width=160; pc.height=160;
+    const high=AGREEMENTS.filter(a=>a.priority==='High').length;
+    const med=AGREEMENTS.filter(a=>a.priority==='Medium').length;
+    const low=AGREEMENTS.filter(a=>a.priority==='Low').length;
+    new Chart(pc,{
+      type:'doughnut',
+      data:{labels:['High','Medium','Low'],datasets:[{data:[high,med,low],backgroundColor:['#EF4444','#F59E0B','#10B981'],borderWidth:3,borderColor:'#fff',hoverOffset:6,spacing:1}]},
+      options:{
+        responsive:false,
+        maintainAspectRatio:false,
+        cutout:'66%',
+        layout:{padding:4},
+        animation:{duration:900,easing:'easeOutQuart'},
+        plugins:{tooltip:{callbacks:{label:ctx=>`  ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/(high+med+low)*100)}%)`}}}
+      }
+    });
+  }
+}
+
+function donutChart(){return'';}
+function barChart(){return'';}
+function trendChart(){return'';}
+function upcomingExpiryTable(){
+  const rows=AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;}).sort((a,b)=>daysUntil(a.expiry)-daysUntil(b.expiry));
+  return`<div class="table-section"><div class="table-header"><div><div class="table-title">⚠ Upcoming Expirations</div><div class="table-subtitle">Next 30 days</div></div></div><table><thead><tr><th>Agreement</th><th>Owner</th><th>Expires</th></tr></thead><tbody>${rows.map(a=>`<tr class="clickable" data-agr-id="${a.id}"><td class="td-bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${esc(a.title)}</td><td style="font-size:12px">${a.owner.split(' ')[0]}</td><td>${expiryCell(a)}</td></tr>`).join('')}${rows.length===0?'<tr><td colspan="3" style="text-align:center;color:var(--text3);padding:24px">No upcoming expirations</td></tr>':''}</tbody></table></div>`;
+}
+function pendingTable(){
+  const rows=AGREEMENTS.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status));
+  return`<div class="table-section"><div class="table-header"><div><div class="table-title">⏳ Pending Actions</div><div class="table-subtitle">${rows.length} items need attention</div></div></div><table><thead><tr><th>Agreement</th><th>Status</th><th>Owner</th></tr></thead><tbody>${rows.map(a=>`<tr class="clickable" data-agr-id="${a.id}"><td class="td-bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${esc(a.title)}</td><td>${statusBadge(a.status)}</td><td style="font-size:12px">${a.owner.split(' ')[0]}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+/* renderTable: updates only the inner table content without full re-render (keeps search focus) */
+function renderTable(){
+  if(S.page==='agreements'){
+    const wrap=document.getElementById('agr-table-wrap');
+    if(wrap){wrap.innerHTML=agreementsInner();bindTableEvents();return;}
+  }
+  render();
+}
+function bindTableEvents(){
+  document.querySelectorAll('[data-agr-id]').forEach(el=>el.addEventListener('click',()=>{const a=AGREEMENTS.find(x=>x.id===el.dataset.agrId);if(a){S.selectedAgr=a;render();}}));
+  const caf=document.getElementById('btn-clear-all');
+  if(caf)caf.addEventListener('click',()=>{S.filterStatus='All';S.filterType='All';S.search='';S.dashFilter=null;S.agrPage=1;const si=document.getElementById('search-input');if(si)si.value='';renderTable();});
+  const bu2=document.getElementById('btn-upload2');
+  if(bu2)bu2.addEventListener('click',()=>{S.uploadFile=null;S.showUpload=true;render();});
+  document.querySelectorAll('[data-agr-pg]').forEach(el=>el.addEventListener('click',()=>{
+    const p=el.dataset.agrPg;
+    if(p==='prev')S.agrPage=Math.max(1,S.agrPage-1);
+    else if(p==='next'){const tot=Math.ceil(getFilteredAgreements().length/PER_PAGE);S.agrPage=Math.min(tot,S.agrPage+1);}
+    else S.agrPage=parseInt(p);
+    renderTable();
+  }));
+}
+const PER_PAGE=8;
+function agreementsInner(){
+  const allData=getFilteredAgreements();
+  const totalPages=Math.max(1,Math.ceil(allData.length/PER_PAGE));
+  if(S.agrPage>totalPages)S.agrPage=totalPages;
+  const data=allData.slice((S.agrPage-1)*PER_PAGE,S.agrPage*PER_PAGE);
+  const statuses=['All',...STATUSES];
+  const types=['All',...TYPES];
+  const dashLabels={total:'Total',signed:'Signed',pending:'Pending',exp7:'Exp. 7d',exp30:'Exp. 30d',expired:'Expired'};
+  // pagination buttons
+  const shown=[];
+  for(let i=1;i<=totalPages;i++){if(i===1||i===totalPages||Math.abs(i-S.agrPage)<=1)shown.push(i);}
+  let pgBtns='';
+  if(S.agrPage>1)pgBtns+=`<div class="pg-btn" data-agr-pg="prev">‹</div>`;
+  let prev=0;
+  shown.forEach(i=>{if(prev&&i-prev>1)pgBtns+=`<div class="pg-btn" style="cursor:default;border:none;color:var(--text3)">…</div>`;pgBtns+=`<div class="pg-btn${i===S.agrPage?' pg-active':''}" data-agr-pg="${i}">${i}</div>`;prev=i;});
+  if(S.agrPage<totalPages)pgBtns+=`<div class="pg-btn" data-agr-pg="next">›</div>`;
+  const start=(S.agrPage-1)*PER_PAGE+1,end=Math.min(S.agrPage*PER_PAGE,allData.length);
+  return`
+    <div class="table-header">
+      <div>
+        <div class="table-title">All Agreements${S.dashFilter?` — ${dashLabels[S.dashFilter]||''}`:''}</div>
+        <div class="table-subtitle">${allData.length} of ${AGREEMENTS.length} records · Page ${S.agrPage}/${totalPages}</div>
+      </div>
+      <div class="table-filters">
+        <select class="filter-select" onchange="S.filterStatus=this.value;S.agrPage=1;renderTable()">
+          ${statuses.map(s=>`<option value="${s}"${S.filterStatus===s?' selected':''}>${s}</option>`).join('')}
+        </select>
+        <select class="filter-select" onchange="S.filterType=this.value;S.agrPage=1;renderTable()">
+          ${types.map(t=>`<option value="${t}"${S.filterType===t?' selected':''}>${t}</option>`).join('')}
+        </select>
+        <button class="btn btn-sm" id="btn-clear-all">✕ Clear</button>
+        <button class="btn btn-primary btn-sm" id="btn-upload2">${IC.plus(13)} Upload</button>
+      </div>
+    </div>
+    <div class="table-scroll"><table>
+      <thead><tr><th>ID</th><th>Agreement Title</th><th>Type</th><th>Counterparty</th><th>Status</th><th>Expiry</th><th>Priority</th><th>Owner</th></tr></thead>
+      <tbody>
+        ${data.length===0?`<tr><td colspan="8" style="text-align:center;padding:44px;color:var(--text3)">No agreements match your filters</td></tr>`:''}
+        ${data.map(a=>`<tr class="clickable" data-agr-id="${a.id}">
+          <td class="td-mono" style="color:var(--teal)">${a.id}</td>
+          <td class="td-bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${esc(a.title)}</td>
+          <td><span class="tag">${a.type}</span></td>
+          <td style="font-size:12px;color:var(--text3);max-width:150px;overflow:hidden;text-overflow:ellipsis">${esc(a.party)}</td>
+          <td>${statusBadge(a.status)}</td>
+          <td>${expiryCell(a)}</td>
+          <td><span class="priority ${a.priority==='High'?'p-high':a.priority==='Medium'?'p-medium':'p-low'}">${a.priority==='High'?'●':a.priority==='Medium'?'◐':'○'} ${a.priority}</span></td>
+          <td style="font-size:12px">${a.owner.split(' ')[0]}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+    <div class="pagination">
+      <span style="font-size:12px;color:var(--text3);margin-right:8px">Showing ${allData.length?start:0}–${end} of ${allData.length}</span>
+      ${pgBtns}
+    </div>`;
+}
+/* ═══════════ AGREEMENTS PAGE ═══════════ */
+function agreements(){
+  return`<div class="table-section" id="agr-table-wrap">${agreementsInner()}</div>`;
+}
+
+/* ═══════════ DETAIL PANEL ═══════════ */
+function renderDetailPanel(){
+  const a=S.selectedAgr;
+  return`
+    <div class="detail-overlay" id="detail-overlay">
+      <div class="detail-panel">
+        <div class="panel-header">
+          <div>
+            <div style="font-size:11px;color:var(--teal);font-family:var(--mono);margin-bottom:4px">${a.id}</div>
+            <div style="font-size:15px;font-weight:600;line-height:1.35;max-width:380px">${esc(a.title)}</div>
+            <div style="margin-top:9px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+              ${statusBadge(a.status)}<span class="tag">${a.type}</span>
+              <span class="priority ${a.priority==='High'?'p-high':a.priority==='Medium'?'p-medium':'p-low'}">${a.priority} Priority</span>
+            </div>
+          </div>
+          <button class="panel-close" id="btn-close-panel">${IC.x(16)}</button>
+        </div>
+        <div class="panel-body">
+          <div class="d-section">
+            <div class="d-section-title">Agreement Details</div>
+            <div class="detail-grid">
+              <div class="detail-field"><label>Department</label><p>${a.dept}</p></div>
+              <div class="detail-field"><label>Counterparty</label><p>${esc(a.party)}</p></div>
+              <div class="detail-field"><label>Owner</label><p>${a.owner}</p></div>
+              <div class="detail-field"><label>Legal Reviewer</label><p>${a.reviewer}</p></div>              <div class="detail-field"><label>Type</label><p>${a.type}</p></div>
+            </div>
+          </div>
+          <div class="d-section">
+            <div class="d-section-title">Key Dates</div>
+            <div class="detail-grid">
+              <div class="detail-field"><label>Effective Date</label><p>${fmtDate(a.effective)}</p></div>
+              <div class="detail-field"><label>Signing Date</label><p>${fmtDate(a.signing)}</p></div>
+              <div class="detail-field"><label>Start Date</label><p>${fmtDate(a.start)}</p></div>
+              <div class="detail-field"><label>Expiry Date</label><p style="display:flex;align-items:center;gap:6px">${fmtDate(a.expiry)} ${expiryCell(a)}</p></div>
+            </div>
+          </div>
+          ${a.tags.length?`<div class="d-section"><div class="d-section-title">Tags</div><div>${a.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div>`:''}
+          ${a.notes?`<div class="d-section"><div class="d-section-title">Notes</div><p style="font-size:13px;color:var(--text2);background:var(--bg3);padding:12px;border-radius:8px;border-left:3px solid var(--teal);line-height:1.6">${esc(a.notes)}</p></div>`:''}
+          <div class="d-section">
+            <div class="d-section-title">Document</div>
+            ${a.file?`<div class="file-preview"><div class="file-preview-icon">${IC.pdf(18)}</div><div style="flex:1;min-width:0"><div class="file-preview-name">${esc(a.file)}</div><div class="file-preview-size">Latest version · PDF</div></div><button class="btn btn-sm" id="btn-dl-doc">${IC.dl(12)} Download</button></div>`:`<div style="font-size:13px;color:var(--text3);font-style:italic;padding:12px;background:var(--bg3);border-radius:8px;text-align:center">No document uploaded yet</div>`}
+          </div>
+          <div class="d-section">
+            <div class="d-section-title">Audit Trail</div>
+            ${[{t:'Status updated to '+a.status,u:a.reviewer,d:'2 days ago'},{t:'Document uploaded',u:a.owner,d:'5 days ago'},{t:'Agreement created',u:a.owner,d:'7 days ago'}].map(e=>`<div class="tl-item"><div class="tl-dot"></div><div><div class="tl-text">${e.t} · <span style="color:var(--teal)">${e.u}</span></div><div class="tl-time">${e.d}</div></div></div>`).join('')}
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn btn-primary btn-sm" id="btn-edit-agr">${IC.edit(12)} Edit</button>
+          <button class="btn btn-sm" id="btn-change-status">${IC.check(12)} Status</button>
+          <button class="btn btn-sm" id="btn-set-reminder">${IC.bell2(12)} Reminder</button>
+          <button class="btn btn-sm" id="btn-export-agr">${IC.dl(12)} Export</button>
+          ${S.currentUser.role==='Admin'?`<button class="btn btn-sm" style="margin-left:auto;color:var(--red);border-color:rgba(220,38,38,.28)" id="btn-delete-agr">${IC.trash(12)} Delete</button>`:''}
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ EDIT MODAL ═══════════ */
+function renderEditModal(){
+  const a=S.editData;
+  const owners=USERS.map(u=>`<option${a.owner===u.name?' selected':''}>${u.name}</option>`).join('');
+  const reviewers=USERS.filter(u=>['Legal Team','Admin'].includes(u.role)).map(u=>`<option${a.reviewer===u.name?' selected':''}>${u.name}</option>`).join('');
+  return`
+    <div class="modal-overlay" id="edit-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <div><div style="font-size:15px;font-weight:600">Edit Agreement</div><div style="font-size:11px;color:var(--text3);margin-top:2px">${a.id}</div></div>
+          <button class="panel-close" id="btn-close-edit">${IC.x(16)}</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"><label>Agreement Title *</label><input id="e-title" value="${esc(a.title)}" type="text"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Agreement Type</label><select id="e-type">${TYPES.map(t=>`<option${a.type===t?' selected':''}>${t}</option>`).join('')}</select></div>
+            <div class="form-group"><label>Department</label><select id="e-dept">${DEPTS.map(d=>`<option${a.dept===d?' selected':''}>${d}</option>`).join('')}</select></div>
+          </div>
+          <div class="form-group"><label>Counterparty Name</label><input id="e-party" value="${esc(a.party)}" type="text"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Owner</label><select id="e-owner">${owners}</select></div>
+            <div class="form-group"><label>Legal Reviewer</label><select id="e-reviewer">${reviewers}</select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Status</label><select id="e-status">${STATUSES.map(s=>`<option${a.status===s?' selected':''}>${s}</option>`).join('')}</select></div>
+            <div class="form-group"><label>Priority</label><select id="e-priority"><option${a.priority==='High'?' selected':''}>High</option><option${a.priority==='Medium'?' selected':''}>Medium</option><option${a.priority==='Low'?' selected':''}>Low</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Start Date</label><input id="e-start" type="date" value="${a.start||''}"/></div>
+            <div class="form-group"><label>Expiry Date</label><input id="e-expiry" type="date" value="${a.expiry||''}"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Effective Date</label><input id="e-effective" type="date" value="${a.effective||''}"/></div>
+            <div class="form-group"><label>Signing Date</label><input id="e-signing" type="date" value="${a.signing||''}"/></div>
+          </div>          <div class="form-group"><label>Tags (comma-separated)</label><input id="e-tags" value="${esc(a.tags.join(', '))}" type="text"/></div>
+          <div class="form-group"><label>Notes / Remarks</label><textarea id="e-notes" rows="3">${esc(a.notes)}</textarea></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="btn-cancel-edit">Cancel</button>
+          <button class="btn btn-primary" id="btn-save-edit">${IC.check(13)} Save Changes</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ STATUS CHANGE (quick) ═══════════ */
+function renderStatusModal(){
+  const a=S.selectedAgr;
+  return`
+    <div class="modal-overlay" id="status-overlay">
+      <div class="modal modal-sm">
+        <div class="modal-header"><div style="font-size:15px;font-weight:600">Change Status</div><button class="panel-close" id="btn-close-status">${IC.x(16)}</button></div>
+        <div class="modal-body">
+          <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Current: ${statusBadge(a.status)}</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${STATUSES.map(s=>`
+              <div class="reminder-option${a.status===s?' selected':''}" data-status="${esc(s)}">
+                ${statusBadge(s)}
+                ${a.status===s?`<span style="margin-left:auto;font-size:11px;color:var(--teal)">Current</span>`:''}
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn" id="btn-close-status2">Close</button></div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ REMINDER MODAL ═══════════ */
+function renderReminderModal(){
+  const a=S.selectedAgr;
+  return`
+    <div class="modal-overlay" id="reminder-overlay">
+      <div class="modal modal-sm">
+        <div class="modal-header"><div style="font-size:15px;font-weight:600">Set Reminder</div><button class="panel-close" id="btn-close-reminder">${IC.x(16)}</button></div>
+        <div class="modal-body">
+          <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Configure reminders for: <strong>${esc(a.title.substring(0,40))}…</strong></p>
+          <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:10px">Send reminders before expiry:</div>
+          ${['30 days before expiry','15 days before expiry','7 days before expiry','3 days before expiry','1 day before expiry'].map((r,i)=>`
+            <div class="reminder-option${i<3?' selected':''}">
+              <input type="checkbox" ${i<3?'checked':''}/><span style="font-size:13px">${r}</span>
+            </div>`).join('')}
+          <div class="form-row" style="margin-top:14px">
+            <div class="form-group"><label>Notify via</label><select><option>Email + Slack</option><option>Email only</option><option>Slack only</option></select></div>
+            <div class="form-group"><label>Recipient</label><select>${USERS.map(u=>`<option${u.name===a.owner?' selected':''}>${u.name}</option>`).join('')}</select></div>
+          </div>
+          <div class="form-group"><label>Custom note (optional)</label><input type="text" placeholder="Add a note to the reminder email…"/></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="btn-cancel-reminder">Cancel</button>
+          <button class="btn btn-primary" id="btn-save-reminder">${IC.bell2(13)} Save Reminders</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ DELETE CONFIRM ═══════════ */
+function renderConfirmDelete(){
+  const a=AGREEMENTS.find(x=>x.id===S.showConfirmDelete);
+  return`
+    <div class="modal-overlay" id="confirm-overlay">
+      <div class="confirm-box">
+        <div class="confirm-icon danger">${IC.trash(20)}</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:8px">Delete Agreement</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:20px">Are you sure you want to delete <strong>${esc(a?.title||'')}</strong>? This action cannot be undone.</p>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn" id="btn-cancel-delete">Cancel</button>
+          <button class="btn btn-danger" id="btn-confirm-delete">${IC.trash(13)} Delete</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ UPLOAD MODAL ═══════════ */
+function renderUploadModal(){
+  const f=S.uploadFile;
+  const owners=USERS.map(u=>`<option>${u.name}</option>`).join('');
+  const reviewers=USERS.filter(u=>['Legal Team','Admin'].includes(u.role)).map(u=>`<option>${u.name}</option>`).join('');
+  const fileZone=f?`
+    <div class="upload-area file-selected" id="upload-area"><input type="file" id="file-input" accept=".pdf,.doc,.docx"/>
+      <div style="font-size:26px;margin-bottom:8px">✅</div>
+      <div style="font-size:13px;color:var(--green);font-weight:500">File attached</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Click to change</div>
+    </div>
+    <div class="file-preview"><div class="file-preview-icon">${IC.pdf(18)}</div>
+      <div style="flex:1;min-width:0"><div class="file-preview-name">${esc(f.name)}</div><div class="file-preview-size">${fmtSize(f.size)}</div></div>
+      <button class="file-preview-rm" id="btn-rm-file">${IC.x(14)}</button>
+    </div>`:
+    `<div class="upload-area${S.uploadDrag?' drag-over':''}" id="upload-area"><input type="file" id="file-input" accept=".pdf,.doc,.docx"/>
+      <div style="font-size:28px;margin-bottom:8px">📄</div>
+      <div style="font-size:13px;color:var(--text2);font-weight:500">Drop file here or <span style="color:var(--teal)">click to browse</span></div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">PDF, DOC, DOCX · Max 50MB</div>
+    </div>`;
+  return`
+    <div class="modal-overlay" id="upload-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <div><div style="font-size:15px;font-weight:600">New Agreement</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Upload document and fill metadata</div></div>
+          <button class="panel-close" id="btn-close-upload">${IC.x(16)}</button>
+        </div>
+        <div class="modal-body">
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px">1. Attach Document</div>
+          ${fileZone}
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin:16px 0 8px">2. Agreement Details</div>
+          <div class="form-row">
+            <div class="form-group" id="fg-u-title"><label>Title *</label><input id="u-title" type="text" placeholder="e.g. Master Service Agreement – Vendor"/><div class="form-error">Required</div></div>
+            <div class="form-group"><label>ID (auto)</label><input type="text" value="${nextId()}" readonly/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="fg-u-type"><label>Type *</label><select id="u-type"><option value="">— Select —</option>${TYPES.map(t=>`<option>${t}</option>`).join('')}</select><div class="form-error">Required</div></div>
+            <div class="form-group" id="fg-u-dept"><label>Department *</label><select id="u-dept"><option value="">— Select —</option>${DEPTS.map(d=>`<option>${d}</option>`).join('')}</select><div class="form-error">Required</div></div>
+          </div>
+          <div class="form-group" id="fg-u-party"><label>Counterparty *</label><input id="u-party" type="text" placeholder="e.g. Infosys Ltd"/><div class="form-error">Required</div></div>
+          <div class="form-row">
+            <div class="form-group"><label>Owner *</label><select id="u-owner">${owners}</select></div>
+            <div class="form-group"><label>Reviewer</label><select id="u-reviewer">${reviewers}</select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Start Date</label><input id="u-start" type="date"/></div>
+            <div class="form-group" id="fg-u-expiry"><label>Expiry Date *</label><input id="u-expiry" type="date"/><div class="form-error">Required</div></div>
+          </div>
+          <div class="form-row">            <div class="form-group"><label>Priority</label><select id="u-priority"><option>High</option><option selected>Medium</option><option>Low</option></select></div>
+          </div>
+          <div class="form-group"><label>Tags</label><input id="u-tags" type="text" placeholder="IT, Vendor, SaaS"/></div>
+          <div class="form-group"><label>Notes</label><textarea id="u-notes" rows="2" placeholder="Internal notes…"></textarea></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="btn-cancel-upload">Cancel</button>
+          <button class="btn btn-primary" id="btn-save-upload">${IC.plus(13)} Save Agreement</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ USER EDIT MODAL ═══════════ */
+function renderUserEditModal(){
+  const isNew=S.showUserEdit==='new';
+  const u=isNew?{id:'',name:'',role:'Business User',dept:'Technology',email:''}:USERS.find(x=>x.id===S.showUserEdit)||{};
+  return`
+    <div class="modal-overlay" id="user-edit-overlay">
+      <div class="modal modal-sm">
+        <div class="modal-header">
+          <div style="font-size:15px;font-weight:600">${isNew?'Invite New User':'Edit User'}</div>
+          <button class="panel-close" id="btn-close-user-edit">${IC.x(16)}</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"><label>Full Name *</label><input id="ue-name" type="text" value="${esc(u.name)}"/></div>
+          <div class="form-group"><label>Email *</label><input id="ue-email" type="email" value="${esc(u.email||'')}"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Role *</label><select id="ue-role">${ROLES.map(r=>`<option${u.role===r?' selected':''}>${r}</option>`).join('')}</select></div>
+            <div class="form-group"><label>Department</label><select id="ue-dept">${DEPTS.map(d=>`<option${u.dept===d?' selected':''}>${d}</option>`).join('')}</select></div>
+          </div>
+          ${isNew?`<div style="background:var(--blue3);border-radius:8px;padding:11px;font-size:12px;color:#1E40AF;margin-top:4px">An invitation email will be sent to the user with login instructions.</div>`:''}
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="btn-cancel-user-edit">Cancel</button>
+          <button class="btn btn-primary" id="btn-save-user-edit" data-uid="${esc(u.id)}" data-new="${isNew}">${isNew?IC.send(13)+' Send Invite':IC.check(13)+' Save Changes'}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ USER DELETE CONFIRM ═══════════ */
+function renderUserDeleteConfirm(){
+  const u=USERS.find(x=>x.id===S.showUserDelete);
+  return`
+    <div class="modal-overlay" id="user-del-overlay">
+      <div class="confirm-box">
+        <div class="confirm-icon danger">${IC.trash(20)}</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:8px">Remove User</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:20px">Remove <strong>${esc(u?.name||'')}</strong> from the portal? They will lose all access immediately.</p>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn" id="btn-cancel-user-del">Cancel</button>
+          <button class="btn btn-danger" id="btn-confirm-user-del">${IC.trash(13)} Remove</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ NOTIFICATIONS PAGE ═══════════ */
+function notifications(){
+  const t=S.notifTab;
+  return`
+    <div style="max-width:780px">
+      <p style="font-size:13px;color:var(--text3);margin-bottom:20px">Configure automated reminders, notification channels, and schedules.</p>
+      <div class="pill-tabs">
+        ${['email','slack','reminders','history'].map(tab=>`<button class="pill-tab${t===tab?' active':''}" data-ntab="${tab}">${{email:'Email',slack:'Slack',reminders:'Schedule',history:'History'}[tab]}</button>`).join('')}
+      </div>
+      ${t==='email'?notifEmail():t==='slack'?notifSlack():t==='reminders'?notifSched():notifHistory()}
+    </div>`;
+}
+function notifEmail(){
+  const items=[{l:'New Agreement Uploaded',d:'Alert legal team on new additions',on:true},{l:'Pending Review',d:'Notify reviewer when assigned',on:true},{l:'Pending Signature',d:'Alert owner when awaiting signature',on:true},{l:'Expiring in 30 Days',d:'30-day advance warning',on:true},{l:'Expiring in 15 Days',d:'15-day reminder',on:true},{l:'Expiring in 7 Days',d:'Urgent 7-day alert',on:true},{l:'Expiring in 1 Day',d:'Final 24-hour alert',on:false},{l:'Expired',d:'Alert on day of expiry',on:true},{l:'Renewal Due',d:'Renewal date reminder',on:true},{l:'Overdue Escalation',d:'Escalate if unsigned 7+ days',on:false}];
+  return`<div class="table-section"><div class="table-header"><div class="table-title">Email Settings</div></div><div style="padding:0 18px">${items.map(n=>`<div class="toggle-row"><div class="toggle-info"><label>${n.l}</label><p>${n.d}</p></div><label class="toggle"><input type="checkbox"${n.on?' checked':''}><span class="toggle-slider"></span></label></div>`).join('')}</div><div style="padding:18px;border-top:1px solid var(--border)"><div class="form-group"><label>Recipients</label><input type="text" value="legal@company.com, priya.sharma@company.com"/></div><div class="form-group"><label>CC on Critical Alerts</label><input type="text" value="clo@company.com"/></div><button class="btn btn-primary btn-sm">Save</button></div></div>`;
+}
+function notifSlack(){
+  return`<div class="table-section">
+    <div class="table-header"><div class="table-title">Slack Integration — Live Agent</div></div>
+    <div style="padding:18px">
+      <div style="background:var(--bg3);border-radius:9px;padding:14px;margin-bottom:18px;display:flex;align-items:center;gap:12px;border:1px solid var(--border)">
+        <div style="width:40px;height:40px;background:#611f69;border-radius:9px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:16px">S</div>
+        <div>
+          <div style="font-size:13px;font-weight:600">${NOTIF_CONFIG.slackWebhook?'Slack Webhook Configured ✓':'Slack Webhook Not Configured'}</div>
+          <div style="font-size:11px;color:${NOTIF_CONFIG.slackWebhook?'var(--green)':'var(--amber)'}">
+            ${NOTIF_CONFIG.slackWebhook?'● Connected — notifications will be sent to Slack':'○ Paste your Incoming Webhook URL below to enable'}
+          </div>
+        </div>
+        <div style="margin-left:auto;font-size:11px;color:var(--text3)">
+          <label class="toggle" style="margin-left:8px"><input type="checkbox" id="slack-toggle" ${NOTIF_CONFIG.enableSlack?'checked':''}><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Incoming Webhook URL <span style="color:var(--text3);font-weight:400">(from Slack App settings)</span></label>
+        <input id="slack-webhook-url" type="text" value="${NOTIF_CONFIG.slackWebhook}" placeholder="https://hooks.slack.com/services/T.../B.../..." style="font-family:var(--mono);font-size:12px"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Default Channel</label><input type="text" value="#legal-ops" placeholder="#legal-ops"/></div>
+        <div class="form-group"><label>Critical Alerts Channel</label><input type="text" value="#legal-urgent" placeholder="#legal-urgent"/></div>
+      </div>
+      <div style="background:var(--blue3);border-radius:8px;padding:12px 14px;font-size:12px;color:#1E40AF;margin-bottom:14px;border:1px solid rgba(37,99,235,0.15)">
+        <strong>How to set up:</strong> Go to <em>api.slack.com/apps</em> → Create App → Incoming Webhooks → Activate → Add to Workspace → Copy URL above.
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" id="btn-save-slack">Save Slack Settings</button>
+        <button class="btn btn-sm" id="btn-test-slack">Send Test Message</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function notifSched(){
+  const lastRun=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'})+' IST';
+  return`<div class="table-section">
+    <div class="table-header">
+      <div><div class="table-title">Notification Agent Schedule</div><div class="table-subtitle">Runs automatically every hour in the browser session</div></div>
+      <button class="btn btn-primary btn-sm" id="btn-run-agent-sched">▶ Run Agent Now</button>
+    </div>
+    <div style="padding:18px">
+      <div style="background:var(--green3);border:1px solid rgba(5,150,105,0.2);border-radius:9px;padding:12px 16px;margin-bottom:18px;font-size:13px;color:#065F46;display:flex;align-items:center;gap:10px">
+        <span style="font-size:18px">✅</span>
+        <div>Agent is <strong>active</strong> and monitoring ${AGREEMENTS.length} agreements. Last run: ${lastRun}.</div>
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label>Email Recipient</label>
+        <input id="notif-email-to" type="email" value="${NOTIF_CONFIG.emailTo}" placeholder="legal@company.com"/>
+      </div>
+      <div class="form-group" style="margin-bottom:18px">
+        <label>CC on Critical Alerts</label>
+        <input id="notif-email-cc" type="email" value="${NOTIF_CONFIG.emailCC}" placeholder="clo@company.com"/>
+      </div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px">Reminder triggers (days before expiry)</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+        ${[1,3,7,15,30].map(d=>`<label style="display:flex;align-items:center;gap:5px;font-size:12px;background:${NOTIF_CONFIG.reminderDays.includes(d)?'var(--teal3)':'var(--bg3)'};border:1px solid ${NOTIF_CONFIG.reminderDays.includes(d)?'rgba(13,148,136,0.3)':'var(--border)'};padding:5px 10px;border-radius:20px;cursor:pointer">
+          <input type="checkbox" ${NOTIF_CONFIG.reminderDays.includes(d)?'checked':''} data-day="${d}" class="day-check" style="accent-color:var(--teal)"/> ${d}d
+        </label>`).join('')}
+      </div>
+      <table style="margin-bottom:16px">
+        <thead><tr><th>Event Type</th><th>Schedule</th><th>Status</th><th>Last Triggered</th></tr></thead>
+        <tbody>
+          <tr><td class="td-bold">Expiry Critical (≤2d)</td><td class="td-mono" style="font-size:12px">On detection</td><td><span class="badge b-expired">Immediate</span></td><td style="font-size:12px;color:var(--text3)">${lastRun}</td></tr>
+          <tr><td class="td-bold">Expiry Warning (3–30d)</td><td class="td-mono" style="font-size:12px">Daily check</td><td><span class="badge b-signed">Active</span></td><td style="font-size:12px;color:var(--text3)">${lastRun}</td></tr>
+          <tr><td class="td-bold">Expired Alert</td><td class="td-mono" style="font-size:12px">Daily check</td><td><span class="badge b-signed">Active</span></td><td style="font-size:12px;color:var(--text3)">${lastRun}</td></tr>
+          <tr><td class="td-bold">Pending Signature</td><td class="td-mono" style="font-size:12px">Daily check</td><td><span class="badge b-signed">Active</span></td><td style="font-size:12px;color:var(--text3)">${lastRun}</td></tr>
+          <tr><td class="td-bold">Hourly Auto-scan</td><td class="td-mono" style="font-size:12px">Every 60 min</td><td><span class="badge b-signed">Running</span></td><td style="font-size:12px;color:var(--text3)">${lastRun}</td></tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary btn-sm" id="btn-save-sched">Save Configuration</button>
+    </div>
+  </div>`;
+}
+function notifHistory(){
+  return`<div class="table-section">
+    <div class="table-header">
+      <div>
+        <div class="table-title">Notification History</div>
+        <div class="table-subtitle">${NOTIF_LOG.length} notifications sent this session</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-sm" id="btn-run-agent"
+          style="background:var(--teal);color:white;border-color:var(--teal)">
+          ▶ Run Agent Now
+        </button>
+        <button class="btn btn-sm">${IC.dl(12)} Export</button>
+      </div>
+    </div>
+    <table><thead><tr><th>Time (IST)</th><th>Type</th><th>Agreement</th><th>Channel</th><th>Recipient</th></tr></thead>
+    <tbody>${renderNotifHistory()}</tbody></table>
+  </div>`;
+}
+
+/* ═══════════ REPORTS PAGE ═══════════ */
+function reports(){
+  const cards=[
+    {title:'Signed Agreements',desc:'All executed agreements',n:AGREEMENTS.filter(a=>['Signed','Renewed'].includes(a.status)).length,icon:'✅',filter:'signed'},
+    {title:'Pending Agreements',desc:'Draft, review, pending sig.',n:AGREEMENTS.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status)).length,icon:'⏳',filter:'pending'},
+    {title:'Expiring This Month',desc:`${TODAY.toLocaleDateString('en-IN',{month:'long',year:'numeric'})} expirations`,n:AGREEMENTS.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=31;}).length,icon:'⚠️',filter:'exp30'},
+    {title:'By Department',desc:'Breakdown by business unit',n:AGREEMENTS.length,icon:'🏢',filter:'total'},
+    {title:'By Type',desc:'Agreement category split',n:AGREEMENTS.length,icon:'📂',filter:'total'},
+    {title:'By Owner',desc:'Workload distribution',n:AGREEMENTS.length,icon:'👤',filter:'total'},
+    {title:'Renewal Pipeline',desc:'Upcoming renewals',n:AGREEMENTS.filter(a=>a.status==='Renewed').length,icon:'🔄',filter:'signed'},
+  ];
+  const deptData=[
+    {dept:'Technology',total:3,active:2,pending:0,expired:0},
+    {dept:'Finance',total:1,active:1,pending:0,expired:0},
+    {dept:'HR',total:1,active:1,pending:0,expired:0},
+    {dept:'Sales',total:1,active:1,pending:0,expired:0},
+    {dept:'Admin',total:1,active:0,pending:0,expired:1},
+    {dept:'Facilities',total:1,active:0,pending:1,expired:0},
+    {dept:'Risk',total:1,active:1,pending:0,expired:0},
+    {dept:'Strategy',total:1,active:0,pending:1,expired:0},
+    {dept:'Business Dev',total:1,active:0,pending:1,expired:0},
+    {dept:'Procurement',total:1,active:0,pending:0,expired:0},
+  ];
+  return`
+    <div>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:20px">Generate, filter and export reports for your legal portfolio. Click View to filter the agreement list or Download to export.</p>
+      <div class="report-grid">
+        ${cards.map(r=>`
+          <div class="report-card">
+            <div style="font-size:26px;margin-bottom:10px">${r.icon}</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px">${r.title}</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:10px">${r.desc}</div>
+            <div style="font-size:20px;font-weight:700;font-family:'DM Serif Display',serif;color:var(--teal);margin-bottom:12px">${r.n}</div>
+            <div style="display:flex;gap:5px">
+              <button class="btn btn-sm" style="flex:1;font-size:11px" data-rpt-view="${r.filter}">View</button>
+              <button class="btn btn-sm" style="flex:1;font-size:11px" data-rpt-dl="csv" data-rpt-filter="${r.filter}">CSV</button>
+              <button class="btn btn-sm" style="flex:1;font-size:11px" data-rpt-dl="pdf" data-rpt-filter="${r.filter}">PDF</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="table-section">
+        <div class="table-header">
+          <div><div class="table-title">Agreements by Department</div></div>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-sm" id="rpt-dl-csv">${IC.dl(12)} CSV</button>
+            <button class="btn btn-sm" id="rpt-dl-pdf">${IC.dl(12)} PDF</button>
+          </div>
+        </div>
+        <table><thead><tr><th>Department</th><th>Total</th><th>Active</th><th>Pending</th><th>Expired</th></tr></thead>
+        <tbody>${deptData.map(r=>`<tr><td class="td-bold">${r.dept}</td><td class="td-mono">${r.total}</td><td style="color:var(--green);font-weight:500">${r.active}</td><td style="color:var(--amber);font-weight:500">${r.pending}</td><td style="color:var(--red);font-weight:500">${r.expired}</td></tr>`).join('')}</tbody></table>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ USERS PAGE ═══════════ */
+function users(){
+  const roleClass={'Admin':'b-review','Legal Team':'b-signed','Business User':'b-pending','Viewer':'b-draft'};
+  const permMatrix={
+    'Upload Agreements':{'Admin':true,'Legal Team':true,'Business User':true,'Viewer':false},
+    'Edit Metadata':{'Admin':true,'Legal Team':true,'Business User':false,'Viewer':false},
+    'Review & Approve':{'Admin':true,'Legal Team':true,'Business User':false,'Viewer':false},
+    'Delete Agreements':{'Admin':true,'Legal Team':false,'Business User':false,'Viewer':false},
+    'View All':{'Admin':true,'Legal Team':true,'Business User':false,'Viewer':true},
+    'Manage Notifications':{'Admin':true,'Legal Team':true,'Business User':false,'Viewer':false},
+    'Export Reports':{'Admin':true,'Legal Team':true,'Business User':false,'Viewer':false},
+    'User Management':{'Admin':true,'Legal Team':false,'Business User':false,'Viewer':false},
+  };
+  return`
+    <div>
+      <div class="table-section" style="margin-bottom:20px">
+        <div class="table-header">
+          <div><div class="table-title">Team Members</div><div class="table-subtitle">${USERS.length} users</div></div>
+          <button class="btn btn-primary btn-sm" id="btn-invite-user">${IC.plus(13)} Invite User</button>
+        </div>
+        <table>
+          <thead><tr><th>User</th><th>Role</th><th>Department</th><th>Agreements</th><th style="text-align:center">Actions</th></tr></thead>
+          <tbody>
+            ${USERS.map(u=>{
+              const owned=AGREEMENTS.filter(a=>a.owner===u.name).length;
+              const reviewing=AGREEMENTS.filter(a=>a.reviewer===u.name).length;
+              return`<tr>
+                <td><div style="display:flex;align-items:center;gap:11px">
+                  <div style="width:34px;height:34px;background:var(--teal3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--teal);flex-shrink:0">${u.initials}</div>
+                  <div><div style="font-size:13px;font-weight:500">${u.name}</div><div style="font-size:11px;color:var(--text3)">${u.email}</div></div>
+                </div></td>
+                <td><span class="badge ${roleClass[u.role]||'b-draft'}">${u.role}</span></td>
+                <td style="font-size:12px;color:var(--text3)">${u.dept}</td>
+                <td style="font-family:var(--mono);font-size:12px">${owned} owned · ${reviewing} reviewing</td>
+                <td style="text-align:center">
+                  <div style="display:flex;gap:4px;justify-content:center">
+                    <button class="btn btn-sm btn-icon" data-edit-user="${u.id}" title="Edit user">${IC.edit(13)}</button>
+                    ${u.id!==S.currentUser.id?`<button class="btn btn-sm btn-icon" style="color:var(--red)" data-del-user="${u.id}" title="Remove user">${IC.trash(13)}</button>`:`<button class="btn btn-sm btn-icon" style="opacity:.3;cursor:not-allowed" title="Cannot remove yourself">${IC.trash(13)}</button>`}
+                  </div>
+                </td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div class="table-section">
+        <div class="table-header"><div class="table-title">Role Permissions Matrix</div></div>
+        <div class="table-scroll"><table>
+          <thead><tr><th style="min-width:180px">Permission</th>${Object.keys(permMatrix['Upload Agreements']||{}).map(r=>`<th style="text-align:center">${r}</th>`).join('')}</tr></thead>
+          <tbody>${Object.entries(permMatrix).map(([perm,map])=>`<tr><td class="td-bold" style="font-size:12px">${perm}</td>${Object.values(map).map(v=>`<td style="text-align:center">${v?'<span style="color:var(--green);font-size:16px;font-weight:600">✓</span>':'<span style="color:var(--border2)">–</span>'}</td>`).join('')}</tr>`).join('')}
+          </tbody>
+        </table></div>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ CSV / PDF DOWNLOAD ═══════════ */
+function downloadCSV(filter){
+  let data=AGREEMENTS;
+  if(filter==='signed')data=data.filter(a=>['Signed','Renewed'].includes(a.status));
+  else if(filter==='pending')data=data.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status));
+  else if(filter==='expired')data=data.filter(a=>a.status==='Expired');
+  else if(filter==='exp30')data=data.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;});
+  
+  const cols=['id','title','type','dept','party','owner','reviewer','status','start','expiry','priority'];
+  const header=cols.join(',');
+  const rows=data.map(a=>cols.map(c=>`"${String(a[c]||'').replace(/"/g,'""')}"`).join(','));
+  const csv=[header,...rows].join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`lexops-agreements-${filter||'all'}.csv`;a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ CSV downloaded successfully','success');
+}
+
+function downloadPDF(filter){
+  let data=[...AGREEMENTS];
+  if(filter==='signed')data=data.filter(a=>['Signed','Renewed'].includes(a.status));
+  else if(filter==='pending')data=data.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status));
+  else if(filter==='expired')data=data.filter(a=>a.status==='Expired');
+  else if(filter==='exp30')data=data.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;});
+  const filterLabels={total:'All Agreements',signed:'Signed Agreements',pending:'Pending Agreements',expired:'Expired Agreements',exp30:'Expiring in 30 Days'};
+  const rows=data.map(a=>`<tr><td>${a.id}</td><td>${a.title}</td><td>${a.type}</td><td>${a.status}</td><td>${a.party}</td><td>${a.dept}</td><td>${fmtDate(a.expiry)}</td><td>${a.priority}</td></tr>`).join('');
+  const html=`<!DOCTYPE html><html><head><title>LexOps – ${filterLabels[filter]||'Report'}</title>
+<style>
+  @page{size:A4 landscape;margin:15mm}
+  *{box-sizing:border-box}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#111;margin:0}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #0D9488}
+  .logo{font-size:20px;font-weight:700;color:#0D9488}
+  .logo span{color:#111;font-weight:400;font-size:13px;display:block;margin-top:2px}
+  .meta{text-align:right;font-size:10px;color:#666}
+  .meta strong{font-size:12px;color:#111;display:block}
+  h2{font-size:14px;margin:0 0 12px;color:#0B1829}
+  table{width:100%;border-collapse:collapse;margin-top:4px}
+  thead tr{background:#0D9488;color:white}
+  th{padding:7px 9px;text-align:left;font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+  td{padding:7px 9px;border-bottom:1px solid #E5E7EB;font-size:10.5px;vertical-align:top}
+  tr:nth-child(even) td{background:#F8FAFC}
+  .badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:9.5px;font-weight:600}
+  .b-s{background:#D1FAE5;color:#065F46}.b-p{background:#FEF3C7;color:#92400E}.b-r{background:#EFF6FF;color:#1E40AF}
+  .b-e{background:#FEF2F2;color:#991B1B}.b-d{background:#F1F5F9;color:#374151}.b-t{background:#EDE9FE;color:#5B21B6}.b-rn{background:#E0F2FE;color:#075985}
+  .footer{margin-top:20px;padding-top:8px;border-top:1px solid #E5E7EB;font-size:9px;color:#9CA3AF;display:flex;justify-content:space-between}
+  .summary{display:flex;gap:16px;margin-bottom:16px}
+  .sum-box{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:6px;padding:8px 14px;text-align:center}
+  .sum-num{font-size:20px;font-weight:700;color:#0D9488}
+  .sum-lbl{font-size:9px;color:#6B7280;text-transform:uppercase;letter-spacing:0.06em}
+  @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head><body>
+<div class="header">
+  <div class="logo">⚖ LexOps<span>Legal Agreement Portal</span></div>
+  <div class="meta"><strong>${filterLabels[filter]||'Agreement Report'}</strong>Generated: ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'})} &nbsp;·&nbsp; ${data.length} records</div>
+</div>
+<div class="summary">
+  <div class="sum-box"><div class="sum-num">${data.length}</div><div class="sum-lbl">Total</div></div>
+  <div class="sum-box"><div class="sum-num">${data.filter(a=>['Signed','Renewed'].includes(a.status)).length}</div><div class="sum-lbl">Signed</div></div>
+  <div class="sum-box"><div class="sum-num">${data.filter(a=>['Pending Signature','Under Review','Draft'].includes(a.status)).length}</div><div class="sum-lbl">Pending</div></div>
+  <div class="sum-box"><div class="sum-num">${data.filter(a=>{const d=daysUntil(a.expiry);return d!=null&&d>=0&&d<=30;}).length}</div><div class="sum-lbl">Exp. 30d</div></div>
+</div>
+<table>
+<thead><tr><th>#</th><th>ID</th><th>Agreement Title</th><th>Type</th><th>Status</th><th>Counterparty</th><th>Department</th><th>Expiry</th><th>Priority</th></tr></thead>
+<tbody>${data.map((a,i)=>{
+  const sc={Signed:'b-s','Pending Signature':'b-p','Under Review':'b-r',Expired:'b-e',Draft:'b-d',Terminated:'b-t',Renewed:'b-rn'};
+  return`<tr><td>${i+1}</td><td style="font-family:monospace;font-size:9.5px;color:#0D9488">${a.id}</td><td><strong>${a.title}</strong></td><td>${a.type}</td><td><span class="badge ${sc[a.status]||'b-d'}">${a.status}</span></td><td>${a.party}</td><td>${a.dept}</td><td>${fmtDate(a.expiry)}</td><td>${a.priority}</td></tr>`;}).join('')}
+</tbody></table>
+<div class="footer"><span>LexOps Legal Agreement Portal &nbsp;·&nbsp; Confidential</span><span>Printed by ${S.currentUser.name} &nbsp;·&nbsp; ${new Date().toLocaleString('en-IN')}</span></div>
+<script>window.onload=function(){window.print();}<\/script>
+</body></html>`;
+  const w=window.open('','_blank','width=1100,height=750');
+  if(w){w.document.write(html);w.document.close();}
+  else showToast('⚠ Pop-up blocked. Please allow pop-ups for this page.','error');
+}
+
+function exportSingleAgreement(a){
+  const html=`<!DOCTYPE html><html><head><title>${a.title}</title><style>body{font-family:Arial,sans-serif;font-size:13px;padding:32px;max-width:700px;margin:0 auto}h1{font-size:20px;margin-bottom:4px}h2{font-size:13px;color:#6B7280;text-transform:uppercase;letter-spacing:0.06em;margin:20px 0 8px;border-bottom:1px solid #E5E7EB;padding-bottom:6px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{font-size:11px;color:#9CA3AF;display:block;margin-bottom:2px}.field p{font-weight:600}.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;background:#D1FAE5;color:#065F46}.notes{background:#F1F5F9;padding:12px;border-radius:6px;border-left:3px solid #0D9488}.footer{margin-top:32px;font-size:10px;color:#9CA3AF;border-top:1px solid #E5E7EB;padding-top:12px}</style></head><body>
+    <h1>${a.title}</h1><p style="color:#6B7280;margin-bottom:20px">${a.id} · <span class="badge">${a.status}</span></p>
+    <h2>Details</h2><div class="grid"><div class="field"><label>Type</label><p>${a.type}</p></div><div class="field"><label>Department</label><p>${a.dept}</p></div><div class="field"><label>Counterparty</label><p>${a.party}</p></div><div class="field"><label>Owner</label><p>${a.owner}</p></div><div class="field"><label>Reviewer</label><p>${a.reviewer}</p></div><div class="field"><label>Priority</label><p>${a.priority}</p></div></div>
+    <h2>Dates</h2><div class="grid"><div class="field"><label>Start</label><p>${fmtDate(a.start)}</p></div><div class="field"><label>Expiry</label><p>${fmtDate(a.expiry)}</p></div></div>    ${a.notes?`<h2>Notes</h2><div class="notes">${a.notes}</div>`:''}
+    <div class="footer">Exported from LexOps on ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</div>
+    </body></html>`;
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');link.href=url;link.download=`${a.id}-${a.title.replace(/[^a-z0-9]/gi,'-').substring(0,40)}.html`;link.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ Agreement exported','success');
+}
+
+/* ═══════════ BIND EVENTS ═══════════ */
+function bindAll(){
+  // Nav
+  document.querySelectorAll('[data-page]').forEach(el=>el.addEventListener('click',()=>{S.page=el.dataset.page;S.selectedAgr=null;S.dashFilter=null;S.agrPage=1;render();if(S.page==='agreements')bindTableEvents();}));
+
+  // Dashboard card drill-down
+  document.querySelectorAll('[data-dash]').forEach(el=>el.addEventListener('click',()=>{S.dashFilter=el.dataset.dash;S.page='agreements';S.search='';S.filterStatus='All';S.filterType='All';S.agrPage=1;render();bindTableEvents();}));
+
+  // Clear dash filter breadcrumb
+  const cdf=document.getElementById('clear-dash-filter');
+  if(cdf)cdf.addEventListener('click',e=>{e.stopPropagation();S.dashFilter=null;render();});
+
+  // Logout
+  const lo=document.getElementById('btn-logout');
+  if(lo) lo.addEventListener('click',doLogout);
+  // Notification agent manual trigger (history tab)
+  const ra=document.getElementById('btn-run-agent');
+  if(ra) ra.addEventListener('click',()=>{
+    const events=runNotificationAgent();
+    showToast(`🔔 Agent ran — ${events.length} event${events.length!==1?'s':''} checked`,'success');
+    setTimeout(render,600);
+  });
+  // Notification agent manual trigger (schedule tab)
+  const ras=document.getElementById('btn-run-agent-sched');
+  if(ras) ras.addEventListener('click',()=>{
+    const events=runNotificationAgent();
+    showToast(`🔔 Agent ran — ${events.length} event${events.length!==1?'s':''} checked. Check console for Slack/Email payloads.`,'success');
+    setTimeout(render,600);
+  });
+  // Save Slack settings
+  const bss=document.getElementById('btn-save-slack');
+  if(bss) bss.addEventListener('click',()=>{
+    const url=(document.getElementById('slack-webhook-url')?.value||'').trim();
+    const tog=document.getElementById('slack-toggle');
+    NOTIF_CONFIG.slackWebhook=url;
+    NOTIF_CONFIG.enableSlack=tog?tog.checked:true;
+    showToast('✅ Slack settings saved'+(url?'. Webhook configured.':'. Simulation mode (no webhook URL).'),'success');
+    render();
+  });
+  // Test Slack
+  const bts=document.getElementById('btn-test-slack');
+  if(bts) bts.addEventListener('click',()=>{
+    dispatchNotification({
+      agreementId:'TEST',type:'info',title:'Test Notification from LexOps',
+      agreement:'Test Agreement',agreementType:'Test',owner:S.currentUser.name,
+      priority:'Medium',expiry:'—',
+      message:'This is a test notification sent from LexOps. If you see this in Slack, the webhook is configured correctly.',
+    });
+    showToast('📨 Test notification dispatched — check console & Slack','info');
+  });
+  // Save scheduler config
+  const bsc=document.getElementById('btn-save-sched');
+  if(bsc) bsc.addEventListener('click',()=>{
+    const emailTo=(document.getElementById('notif-email-to')?.value||'').trim();
+    const emailCC=(document.getElementById('notif-email-cc')?.value||'').trim();
+    if(emailTo) NOTIF_CONFIG.emailTo=emailTo;
+    if(emailCC) NOTIF_CONFIG.emailCC=emailCC;
+    const days=[...document.querySelectorAll('.day-check:checked')].map(el=>parseInt(el.dataset.day));
+    if(days.length) NOTIF_CONFIG.reminderDays=days;
+    showToast('✅ Notification schedule saved','success');
+  });
+  // Open upload
+  ['btn-upload','btn-upload2'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{S.uploadFile=null;S.showUpload=true;render();});});
+
+  // Close upload
+  ['btn-close-upload','btn-cancel-upload'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{S.showUpload=false;render();});});
+  const uo=document.getElementById('upload-overlay');
+  if(uo)uo.addEventListener('click',e=>{if(e.target===uo){S.showUpload=false;render();}});
+
+  // File input
+  const fi=document.getElementById('file-input');
+  if(fi)fi.addEventListener('change',e=>{const f=e.target.files[0];if(f)handleFile(f);});
+  const rf=document.getElementById('btn-rm-file');
+  if(rf)rf.addEventListener('click',e=>{e.stopPropagation();S.uploadFile=null;render();});
+
+  // Drag-drop
+  const ua=document.getElementById('upload-area');
+  if(ua){
+    ua.addEventListener('dragover',e=>{e.preventDefault();if(!S.uploadDrag){S.uploadDrag=true;render();}});
+    ua.addEventListener('dragleave',e=>{if(!ua.contains(e.relatedTarget)){S.uploadDrag=false;render();}});
+    ua.addEventListener('drop',e=>{e.preventDefault();S.uploadDrag=false;const f=e.dataTransfer.files[0];if(f)handleFile(f);});
+  }
+
+  // Save upload
+  const su=document.getElementById('btn-save-upload');
+  if(su)su.addEventListener('click',saveUpload);
+
+  // Agreement row click → open detail panel
+  document.querySelectorAll('[data-agr-id]').forEach(el=>el.addEventListener('click',()=>{
+    const a=AGREEMENTS.find(x=>x.id===el.dataset.agrId);
+    if(a){S.selectedAgr=a;render();}
+  }));
+
+  // Close panel
+  const cp=document.getElementById('btn-close-panel');
+  if(cp)cp.addEventListener('click',()=>{S.selectedAgr=null;render();});
+  const dov=document.getElementById('detail-overlay');
+  if(dov)dov.addEventListener('click',e=>{if(e.target===dov){S.selectedAgr=null;render();}});
+
+  // Panel action buttons
+  const ea=document.getElementById('btn-edit-agr');
+  if(ea)ea.addEventListener('click',()=>{S.editData={...S.selectedAgr};S.showEdit=true;render();});
+  const cs=document.getElementById('btn-change-status');
+  if(cs)cs.addEventListener('click',()=>{S.showStatus=true;render();});
+  const sr=document.getElementById('btn-set-reminder');
+  if(sr)sr.addEventListener('click',()=>{S.showReminder=true;render();});
+  const xe=document.getElementById('btn-export-agr');
+  if(xe)xe.addEventListener('click',()=>exportSingleAgreement(S.selectedAgr));
+  const da=document.getElementById('btn-delete-agr');
+  if(da)da.addEventListener('click',()=>{S.showConfirmDelete=S.selectedAgr.id;render();});
+  const dl=document.getElementById('btn-dl-doc');
+  if(dl)dl.addEventListener('click',()=>showToast('📄 Downloading '+S.selectedAgr.file+'…','info'));
+
+  // Edit modal
+  const bce=document.getElementById('btn-close-edit');
+  if(bce)bce.addEventListener('click',()=>{S.showEdit=false;render();});
+  const bca=document.getElementById('btn-cancel-edit');
+  if(bca)bca.addEventListener('click',()=>{S.showEdit=false;render();});
+  const eo=document.getElementById('edit-overlay');
+  if(eo)eo.addEventListener('click',e=>{if(e.target===eo){S.showEdit=false;render();}});
+  const bse=document.getElementById('btn-save-edit');
+  if(bse)bse.addEventListener('click',saveEdit);
+
+  // Status modal (rendered inline if showStatus)
+  if(S.showStatus){
+    const so=document.getElementById('status-overlay');
+    if(so)so.addEventListener('click',e=>{if(e.target===so){S.showStatus=false;render();}});
+    ['btn-close-status','btn-close-status2'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{S.showStatus=false;render();});});
+    document.querySelectorAll('[data-status]').forEach(el=>el.addEventListener('click',()=>{
+      const newStatus=el.dataset.status;
+      const idx=AGREEMENTS.findIndex(a=>a.id===S.selectedAgr.id);
+      if(idx>=0){AGREEMENTS[idx].status=newStatus;S.selectedAgr=AGREEMENTS[idx];}
+      S.showStatus=false;render();
+      showToast(`✅ Status updated to <strong>${newStatus}</strong>`,'success');
+    }));
+  }
+
+  // Reminder modal
+  const brc=document.getElementById('btn-close-reminder');
+  if(brc)brc.addEventListener('click',()=>{S.showReminder=false;render();});
+  const bra=document.getElementById('btn-cancel-reminder');
+  if(bra)bra.addEventListener('click',()=>{S.showReminder=false;render();});
+  const brx=document.getElementById('reminder-overlay');
+  if(brx)brx.addEventListener('click',e=>{if(e.target===brx){S.showReminder=false;render();}});
+  const brs=document.getElementById('btn-save-reminder');
+  if(brs)brs.addEventListener('click',()=>{S.showReminder=false;showToast('🔔 Reminders saved for '+S.selectedAgr.title.substring(0,30)+'…','success');render();});
+
+  // Delete confirm
+  const bcd=document.getElementById('btn-cancel-delete');
+  if(bcd)bcd.addEventListener('click',()=>{S.showConfirmDelete=null;render();});
+  const co=document.getElementById('confirm-overlay');
+  if(co)co.addEventListener('click',e=>{if(e.target===co){S.showConfirmDelete=null;render();}});
+  const bfd=document.getElementById('btn-confirm-delete');
+  if(bfd)bfd.addEventListener('click',()=>{
+    const id=S.showConfirmDelete;
+    const title=AGREEMENTS.find(a=>a.id===id)?.title||'';
+    AGREEMENTS.splice(AGREEMENTS.findIndex(a=>a.id===id),1);
+    S.showConfirmDelete=null;S.selectedAgr=null;
+    render();showToast(`🗑 Agreement deleted: ${title.substring(0,30)}…`,'success');
+  });
+
+  // Notif tabs
+  document.querySelectorAll('[data-ntab]').forEach(el=>el.addEventListener('click',()=>{S.notifTab=el.dataset.ntab;render();}));
+
+  // Clear all filters
+  const caf=document.getElementById('btn-clear-all');
+  if(caf)caf.addEventListener('click',()=>{S.filterStatus='All';S.filterType='All';S.search='';S.dashFilter=null;render();});
+
+  // Reports: view button
+  document.querySelectorAll('[data-rpt-view]').forEach(el=>el.addEventListener('click',()=>{S.dashFilter=el.dataset.rptView;S.page='agreements';S.search='';S.filterStatus='All';S.filterType='All';S.agrPage=1;render();bindTableEvents();}));
+
+  // Reports: download
+  document.querySelectorAll('[data-rpt-dl]').forEach(el=>el.addEventListener('click',()=>{const fmt=el.dataset.rptDl,filter=el.dataset.rptFilter;if(fmt==='csv')downloadCSV(filter);else downloadPDF(filter);}));
+  const rdc=document.getElementById('rpt-dl-csv');if(rdc)rdc.addEventListener('click',()=>downloadCSV('total'));
+  const rdp=document.getElementById('rpt-dl-pdf');if(rdp)rdp.addEventListener('click',()=>downloadPDF('total'));
+
+  // User management
+  const biu=document.getElementById('btn-invite-user');
+  if(biu)biu.addEventListener('click',()=>{S.showUserEdit='new';render();});
+  document.querySelectorAll('[data-edit-user]').forEach(el=>el.addEventListener('click',()=>{S.showUserEdit=el.dataset.editUser;render();}));
+  document.querySelectorAll('[data-del-user]').forEach(el=>el.addEventListener('click',()=>{S.showUserDelete=el.dataset.delUser;render();}));
+
+  // User edit modal
+  const bcu=document.getElementById('btn-close-user-edit');if(bcu)bcu.addEventListener('click',()=>{S.showUserEdit=null;render();});
+  const bcua=document.getElementById('btn-cancel-user-edit');if(bcua)bcua.addEventListener('click',()=>{S.showUserEdit=null;render();});
+  const ueo=document.getElementById('user-edit-overlay');if(ueo)ueo.addEventListener('click',e=>{if(e.target===ueo){S.showUserEdit=null;render();}});
+  const bsue=document.getElementById('btn-save-user-edit');
+  if(bsue)bsue.addEventListener('click',()=>{
+    const isNew=bsue.dataset.new==='true';
+    const uid=bsue.dataset.uid;
+    const name=document.getElementById('ue-name')?.value?.trim()||'';
+    const email=document.getElementById('ue-email')?.value?.trim()||'';
+    const role=document.getElementById('ue-role')?.value||'Business User';
+    const dept=document.getElementById('ue-dept')?.value||'Technology';
+    if(!name||!email){showToast('❌ Name and email are required','error');return;}
+    const initials=name.split(' ').map(p=>p[0]).join('').toUpperCase().substring(0,2);
+    if(isNew){
+      const newId='U'+Date.now();
+      USERS.push({id:newId,name,email,role,dept,initials});
+      S.showUserEdit=null;render();showToast(`✅ Invite sent to ${name}`,'success');
+    }else{
+      const idx=USERS.findIndex(u=>u.id===uid);
+      if(idx>=0){USERS[idx]={...USERS[idx],name,email,role,dept,initials};}
+      S.showUserEdit=null;render();showToast(`✅ User ${name} updated`,'success');
+    }
+  });
+
+  // User delete confirm
+  const bcud=document.getElementById('btn-cancel-user-del');if(bcud)bcud.addEventListener('click',()=>{S.showUserDelete=null;render();});
+  const udov=document.getElementById('user-del-overlay');if(udov)udov.addEventListener('click',e=>{if(e.target===udov){S.showUserDelete=null;render();}});
+  const bfud=document.getElementById('btn-confirm-user-del');
+  if(bfud)bfud.addEventListener('click',()=>{
+    const u=USERS.find(x=>x.id===S.showUserDelete);
+    USERS.splice(USERS.findIndex(x=>x.id===S.showUserDelete),1);
+    S.showUserDelete=null;render();showToast(`✅ ${u?.name||'User'} removed`,'success');
+  });
+  // Bind table pagination/row events if on agreements page
+  if(S.page==='agreements') bindTableEvents();
+}
+
+/* ═══════════ LOGIN PAGE ═══════════ */
+function renderLogin(){
+  const svgScale=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L4 9v12h4v-6h8v6h4V9L12 3zm0 2.5L18 10v1H6V10l6-4.5z"/></svg>`;
+  const svgUser=`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
+  const svgLock=`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`;
+  const svgEye=`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const svgArrow=`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+  const svgWarn=`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+  const feats=[
+    {icon:`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,text:`<strong>Agreement Management</strong> — upload, track and organise all contracts`},
+    {icon:`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>`,text:`<strong>Smart Alerts</strong> — automated reminders for expiry and pending actions`},
+    {icon:`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,text:`<strong>Analytics Dashboard</strong> — real-time portfolio health and insights`},
+    {icon:`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>`,text:`<strong>Role-based Access</strong> — Admin, Legal, Business User and Viewer roles`},
+  ];
+  return`
+  <div class="login-page">
+    <div class="login-bg-decor">
+      <div class="login-bg-circle1"></div>
+      <div class="login-bg-circle2"></div>
+      <div class="login-bg-circle3"></div>
+    </div>
+    <div class="login-left">
+      <div class="login-left-logo">
+        <div class="login-logo-icon">${svgScale}</div>
+        <div><div class="login-logo-name">LexOps</div><div class="login-logo-sub">Legal Agreement Portal</div></div>
+      </div>
+      <div class="login-headline">Manage your legal<br>portfolio <span>with confidence</span></div>
+      <div class="login-tagline">A unified workspace for your legal team to track agreements, monitor expiry dates, and stay ahead of renewals — all in one place.</div>
+      <div class="login-features">
+        ${feats.map(f=>`<div class="login-feature"><div class="login-feat-icon">${f.icon}</div><div class="login-feat-text">${f.text}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-card">
+        <div class="login-card-header">
+          <div class="login-card-title">Welcome back</div>
+          <div class="login-card-sub">Sign in to your LexOps account to continue</div>
+        </div>
+        ${S.loginError?`<div class="login-error">${svgWarn}<span>${S.loginError}</span></div>`:''}
+        <div class="login-form-group">
+          <label>Username</label>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">${svgUser}</span>
+            <input id="login-user" class="login-input${S.loginError?' error':''}" type="text" placeholder="Enter your username" autocomplete="username"/>
+          </div>
+        </div>
+        <div class="login-form-group">
+          <label>Password</label>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">${svgLock}</span>
+            <input id="login-pw" class="login-input${S.loginError?' error':''}" type="password" placeholder="Enter your password" autocomplete="current-password" id="login-pw"/>
+            <button class="login-pw-toggle" id="pw-toggle" type="button">${svgEye}</button>
+          </div>
+        </div>
+        <div class="login-remember">
+          <label><input type="checkbox" id="remember-me"/> Remember me</label>
+          <span class="login-forgot">Forgot password?</span>
+        </div>
+        <button class="login-btn" id="login-submit">&nbsp;Sign In &nbsp;${svgArrow}</button>
+        <div class="login-divider">Demo credentials</div>
+        <div class="login-cred-hint">
+          <div class="login-cred-row"><span>Username</span><strong>Admin</strong></div>
+          <div class="login-cred-row" style="margin-top:5px"><span>Password</span><strong>Admin@123</strong></div>
+        </div>
+        <button class="login-btn" id="login-autofill" style="margin-top:10px;background:var(--bg3);color:var(--teal);border:1.5px solid rgba(13,148,136,0.3);box-shadow:none">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+          &nbsp;Autofill Demo Credentials
+        </button>
+        <div class="login-footer">LexOps v2.0 &nbsp;·&nbsp; Legal Operations Platform &nbsp;·&nbsp; © 2024</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function doLogin(){
+  const user=(document.getElementById('login-user')?.value||'').trim();
+  const pw=(document.getElementById('login-pw')?.value||'').trim();
+  if(!user||!pw){S.loginError='Please enter both username and password.';render();return;}
+  if(user==='Admin'&&pw==='Admin@123'){
+    S.isLoggedIn=true;S.loginError='';render();
+    startNotificationScheduler();
+    setTimeout(()=>showToast('✅ Welcome back, '+S.currentUser.name+'!','success'),100);
+  } else {
+    S.loginError='Invalid username or password. Please try again.';render();
+    setTimeout(()=>{const inp=document.getElementById('login-pw');if(inp){inp.value='';inp.focus();}},50);
+  }
+}
+
+function doLogout(){S.isLoggedIn=false;S.loginError='';S.page='dashboard';render();}
+
+/* ═══════════ STATUS CHANGE MODAL (dynamic render) ═══════════ */
+// Patch render to include status modal when needed
+const _render=render;
+function render(){
+  // Show login page if not authenticated
+  if(!S.isLoggedIn){
+    document.getElementById('app').innerHTML=renderLogin();
+    bindLoginEvents();
+    return;
+  }
+  document.getElementById('app').innerHTML=`
+    <div class="sidebar">${renderSidebar()}</div>
+    <div class="main">
+      ${renderTopbar()}
+      <div class="content page-wrap">
+        ${{dashboard,agreements,notifications,reports,users}[S.page]?.()??''}
+      </div>
+    </div>
+    ${S.selectedAgr?renderDetailPanel():''}
+    ${S.showUpload?renderUploadModal():''}
+    ${S.showEdit?renderEditModal():''}
+    ${S.showStatus&&S.selectedAgr?renderStatusModal():''}
+    ${S.showReminder&&S.selectedAgr?renderReminderModal():''}
+    ${S.showConfirmDelete?renderConfirmDelete():''}
+    ${S.showUserEdit?renderUserEditModal():''}
+    ${S.showUserDelete?renderUserDeleteConfirm():''}
+  `;
+  bindAll();
+  if(S.page==='dashboard' && typeof Chart!=='undefined') requestAnimationFrame(()=>initCharts());
+}
+
+function bindLoginEvents(){
+  const sub=document.getElementById('login-submit');
+  if(sub) sub.addEventListener('click',doLogin);
+  // Enter key on both fields triggers login
+  ['login-user','login-pw'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+  });
+  // Password visibility toggle
+  const toggle=document.getElementById('pw-toggle');
+  const pwField=document.getElementById('login-pw');
+  if(toggle&&pwField){
+    toggle.addEventListener('click',()=>{
+      const isText=pwField.type==='text';
+      pwField.type=isText?'password':'text';
+      toggle.innerHTML=isText
+        ?`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
+        :`<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22"/></svg>`;
+    });
+  }
+  // Autofill demo credentials
+  const af=document.getElementById('login-autofill');
+  if(af) af.addEventListener('click',()=>{
+    const u=document.getElementById('login-user');
+    const p=document.getElementById('login-pw');
+    if(u) u.value='Admin';
+    if(p){p.value='Admin@123';p.type='password';}
+    // flash the fields
+    [u,p].forEach(el=>{if(el){el.style.borderColor='var(--teal)';el.style.boxShadow='0 0 0 3px rgba(13,148,136,0.15)';setTimeout(()=>{el.style.borderColor='';el.style.boxShadow='';},700);}});
+  });
+  // Auto-focus username
+  setTimeout(()=>document.getElementById('login-user')?.focus(),50);
+}
+
+/* ═══════════ FILE UPLOAD HANDLERS ═══════════ */
+function handleFile(f){
+  const ext=f.name.split('.').pop().toLowerCase();
+  if(!['pdf','doc','docx'].includes(ext)){showToast('❌ Only PDF, DOC, DOCX files are allowed','error');return;}
+  if(f.size>52428800){showToast('❌ File must be under 50MB','error');return;}
+  S.uploadFile=f;render();
+  setTimeout(()=>{const ti=document.getElementById('u-title');if(ti&&!ti.value)ti.value=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');},50);
+}
+
+function saveUpload(){
+  const title=(document.getElementById('u-title')?.value||'').trim();
+  const type=document.getElementById('u-type')?.value||'';
+  const dept=document.getElementById('u-dept')?.value||'';
+  const party=(document.getElementById('u-party')?.value||'').trim();
+  const expiry=document.getElementById('u-expiry')?.value||'';
+  let valid=true;
+  const setErr=(id,show)=>{const fg=document.getElementById('fg-'+id);if(fg)fg.classList.toggle('has-error',show);if(show)valid=false;};
+  setErr('u-title',!title);setErr('u-type',!type);setErr('u-dept',!dept);setErr('u-party',!party);setErr('u-expiry',!expiry);
+  if(!valid){document.querySelector('.has-error')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const newA={
+    id:nextId(),title,type,dept,party,
+    owner:document.getElementById('u-owner')?.value||USERS[0].name,
+    reviewer:document.getElementById('u-reviewer')?.value||'',
+    status:'Draft',effective:'',signing:'',
+    start:document.getElementById('u-start')?.value||'',expiry,
+    priority:document.getElementById('u-priority')?.value||'Medium',
+    tags:(document.getElementById('u-tags')?.value||'').split(',').map(t=>t.trim()).filter(Boolean),
+    notes:document.getElementById('u-notes')?.value?.trim()||'',
+    file:S.uploadFile?S.uploadFile.name:'',
+  };
+  AGREEMENTS.unshift(newA);S.showUpload=false;S.uploadFile=null;S.page='agreements';S.agrPage=1;
+  render();bindTableEvents();showToast(`✅ Agreement saved: ${title.substring(0,30)}…`,'success');
+}
+
+function saveEdit(){
+  const title=(document.getElementById('e-title')?.value||'').trim();
+  if(!title){showToast('❌ Title is required','error');return;}
+  const idx=AGREEMENTS.findIndex(a=>a.id===S.editData.id);
+  if(idx>=0){
+    AGREEMENTS[idx]={
+      ...AGREEMENTS[idx],
+      title,
+      type:document.getElementById('e-type')?.value||AGREEMENTS[idx].type,
+      dept:document.getElementById('e-dept')?.value||AGREEMENTS[idx].dept,
+      party:(document.getElementById('e-party')?.value||'').trim()||AGREEMENTS[idx].party,
+      owner:document.getElementById('e-owner')?.value||AGREEMENTS[idx].owner,
+      reviewer:document.getElementById('e-reviewer')?.value||AGREEMENTS[idx].reviewer,
+      status:document.getElementById('e-status')?.value||AGREEMENTS[idx].status,
+      priority:document.getElementById('e-priority')?.value||AGREEMENTS[idx].priority,
+      start:document.getElementById('e-start')?.value||'',
+      expiry:document.getElementById('e-expiry')?.value||'',
+      effective:document.getElementById('e-effective')?.value||'',
+      signing:document.getElementById('e-signing')?.value||'',
+      tags:(document.getElementById('e-tags')?.value||'').split(',').map(t=>t.trim()).filter(Boolean),
+      notes:(document.getElementById('e-notes')?.value||'').trim(),
+    };
+    S.selectedAgr=AGREEMENTS[idx];
+  }
+  S.showEdit=false;render();showToast('✅ Agreement updated successfully','success');
+}
+
+/* ═══════════ INIT ═══════════ */
+render();
+if(S.page==='agreements') bindTableEvents();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" onload="if(typeof S!=='undefined'&&S.page==='dashboard')initCharts()"></script>
+</body>
+</html>
