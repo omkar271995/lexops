@@ -764,6 +764,56 @@ function buildEmailBody(evt){
 }
 
 // ── Core dispatcher — sends to Slack and/or Email ──
+// ── SLACK SENDER — with automatic fallback strategies ──
+// Strategy 1: text/plain body (Slack accepts this, bypasses CORS preflight)
+// Strategy 2: allorigins CORS proxy (free, no signup)
+// Strategy 3: cors-anywhere proxy fallback
+async function sendToSlack(webhookUrl, payloadObj){
+  const payloadStr = JSON.stringify(payloadObj);
+
+  // ── Strategy 1: Send as text/plain (no CORS preflight) ──
+  // Slack webhooks accept raw JSON as text/plain — this bypasses the preflight entirely
+  try {
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: payloadStr,
+    });
+    // text/plain does NOT trigger preflight, so we get a real response
+    if(res.ok || res.status === 200) return { ok: true, method: 'direct' };
+  } catch(e1) {
+    console.warn('[LexOps Slack Strategy 1 failed]', e1.message);
+  }
+
+  // ── Strategy 2: allorigins.win CORS proxy ──
+  try {
+    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(webhookUrl);
+    const res = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payloadStr,
+    });
+    if(res.ok || res.status === 200) return { ok: true, method: 'allorigins-proxy' };
+  } catch(e2) {
+    console.warn('[LexOps Slack Strategy 2 failed]', e2.message);
+  }
+
+  // ── Strategy 3: cors-anywhere proxy ──
+  try {
+    const proxyUrl2 = 'https://cors-anywhere.herokuapp.com/' + webhookUrl;
+    const res = await fetch(proxyUrl2, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: payloadStr,
+    });
+    if(res.ok || res.status === 200) return { ok: true, method: 'cors-anywhere' };
+  } catch(e3) {
+    console.warn('[LexOps Slack Strategy 3 failed]', e3.message);
+  }
+
+  return { ok: false, method: 'all-failed' };
+}
+
 async function dispatchNotification(evt){
   const key = `${evt.agreementId}_${evt.type}_${TODAY.toISOString().split('T')[0]}`;
   if(wasSent(key)) return; // dedupe — only once per day per agreement per event type
@@ -785,18 +835,11 @@ async function dispatchNotification(evt){
   // ── SLACK ──
   if(NOTIF_CONFIG.enableSlack && NOTIF_CONFIG.slackWebhook){
     try{
-      // mode:'no-cors' is required for Slack webhooks from browser — response is opaque but message is delivered
-      await fetch(NOTIF_CONFIG.slackWebhook,{
-        method:'POST',
-        mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(buildSlackPayload(evt))
-      });
-      // no-cors returns opaque response (status 0) — can't check ok, but message is sent
+      const result = await sendToSlack(NOTIF_CONFIG.slackWebhook, buildSlackPayload(evt));
+      if(!result.ok) console.warn('[LexOps Slack] All send strategies failed for:', evt.title);
     }catch(e){console.warn('[LexOps Slack]',e.message);}
   } else if(NOTIF_CONFIG.enableSlack){
-    // Simulation — log to console with full payload
-    console.log('%c[LexOps Slack Notification]','color:#4A154B;font-weight:bold;font-size:13px', buildSlackPayload(evt));
+    console.log('%c[LexOps Slack Notification — Simulation]','color:#4A154B;font-weight:bold;font-size:13px', buildSlackPayload(evt));
   }
 
   // ── EMAIL ──
@@ -1969,7 +2012,7 @@ function notifSlack(){
       </div>
 
       <div style="background:var(--green3);border:1px solid rgba(5,150,105,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#065F46;margin-bottom:16px">
-        ✅ <strong>CORS solved with <code>mode:'no-cors'</code></strong> — Slack webhooks accept opaque browser requests. No backend proxy needed. Messages are delivered even though the response is opaque.
+        🔄 <strong>Auto-retry with 3 strategies:</strong> (1) Direct <code>text/plain</code> send — no preflight → (2) allorigins.win CORS proxy → (3) cors-anywhere proxy. Click <em>Send Test Message</em> to verify which works in your environment.
       </div>
 
       <div style="display:flex;gap:8px">
@@ -2576,29 +2619,38 @@ function bindAll(){
   const bts=document.getElementById('btn-test-slack');
   if(bts) bts.addEventListener('click',async()=>{
     if(!NOTIF_CONFIG.slackWebhook){
-      showToast('⚠ No webhook URL set. Paste your Incoming Webhook URL and Save first, then test.','error');
+      showToast('⚠ No webhook URL. Paste your Incoming Webhook URL and Save first.','error');
       return;
     }
+    // Show sending state on button
+    bts.textContent='⏳ Sending…';
+    bts.disabled=true;
     const payload=buildSlackPayload({
-      agreementId:'TEST_'+Date.now(), // unique key bypasses dedup
-      type:'info',title:'✅ Test Notification from LexOps',
-      agreement:'Test Agreement',agreementType:'Test',owner:S.currentUser.name,
-      priority:'Medium',expiry:'—',
-      message:'This is a test message from LexOps. Your Slack integration is working correctly! 🎉',
+      agreementId:'TEST_'+Date.now(),
+      type:'info',
+      title:'✅ LexOps Test Notification',
+      agreement:'Test Agreement — Portal Connected',
+      agreementType:'Test',
+      owner:S.currentUser.name,
+      priority:'Medium',
+      expiry:'—',
+      message:`Test sent from LexOps Legal Portal at ${new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})} IST. Your integration is working! 🎉`,
     });
     try{
-      // Slack webhooks require no-cors from browser
-      await fetch(NOTIF_CONFIG.slackWebhook,{
-        method:'POST',
-        mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(payload),
-      });
-      // no-cors gives opaque response — if no network error, message was sent
-      showToast(`✅ Test message sent to Slack! Check ${NOTIF_CONFIG.defaultChannel}`,'success');
+      const result = await sendToSlack(NOTIF_CONFIG.slackWebhook, payload);
+      if(result.ok){
+        showToast(`✅ Test message sent to ${NOTIF_CONFIG.defaultChannel} (via ${result.method})`, 'success');
+      } else {
+        // All proxy strategies failed — show helpful message with manual option
+        showToast('❌ Could not reach Slack — see console for payload to test manually', 'error');
+        console.log('%c[LexOps] Slack test payload (copy & use with curl or Postman)','color:#4A154B;font-weight:bold');
+        console.log('curl -X POST -H "Content-Type: application/json" -d \'' + JSON.stringify(payload) + '\' ' + NOTIF_CONFIG.slackWebhook);
+      }
     }catch(e){
-      console.log('%c[LexOps Slack Test Payload]','color:#4A154B;font-weight:bold',payload);
-      showToast('❌ Network error sending to Slack: '+e.message,'error');
+      showToast('❌ Error: '+e.message,'error');
+    }finally{
+      bts.textContent='📨 Send Test Message';
+      bts.disabled=false;
     }
   });
   // Save scheduler config
